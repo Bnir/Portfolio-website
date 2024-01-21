@@ -5,8 +5,9 @@ import { dirname } from "path";
 
 const app = express();
 const port= 5050;
-
+const __dirname=dirname(fileURLToPath(import.meta.url));
 app.use(express.urlencoded({extended:false}));
+app.use(express.static(__dirname + '/public'));
 
 
 app.get('/',(req,res)=>{
