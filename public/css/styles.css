@@ -4,11 +4,12 @@
     padding: 0;
     margin:0;
     box-sizing: border-box;
+    
 }
 
 
 header{
-    background-color:rgba(0, 0, 0, 0.7);
+    background-color:rgba(0, 0, 0, 0.7) !important;
     backdrop-filter: blur(4px);
     position: fixed;
     top: 0;

@@ -1,28 +1,5 @@
-body{
-    width: 100vw;
-    height: 100vh;
-}
-
-
-
-.navbar{
-
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-}
-.navbar-center{
-    display: flex;
-}
-.navbar-center{
-    display: flex;
-    width: 60%;
-    background-color:rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(4px);
-}
-.menu-logo{
-    display: flex;
-
+.c-navbar{
+    background-color: rgb(192, 82, 82) !important;
 }
 
 
