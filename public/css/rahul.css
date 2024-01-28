@@ -1,0 +1,643 @@
+.skills ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.skills li {
+    margin-bottom: 5px;
+}
+
+
+
+
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: disc;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* ------ABOVE IS CSS RESET------ */
+
+body {
+    height: 100%;
+    width: 70%;
+    margin: 0 auto;
+    /* Hide scrollbars to cover the entire screen */
+    background-color: rgb(16, 25, 44);
+    font-family: inter;
+    overflow: hidden;
+}
+
+.cont p::selection,
+.cont h1::selection {
+    background-color: aqua;
+}
+
+
+:root {
+    --head1c: #e2e8f0;
+    --para1c: #8495b1;
+    --h4c: #4a5465;
+    --para1f: 28px;
+    --para2f: 23px;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--head1c);
+}
+
+h2 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--head1c);
+}
+
+.light-effect {
+    position: absolute;
+    width: 900px;
+    height: 900px;
+    filter: blur(0.2);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(20, 37, 74, 0.7), rgba(20, 34, 67, 0) 70%);
+    pointer-events: none;
+    /* Make the light effect non-interactive */
+    transform: translate(-50%, -50%);
+    /* Center the element on the cursor */
+    display: none;
+    z-index: -2999;
+}
+
+.cont {
+    display: flex;
+    height: 100vh;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.column1 {
+    width: 47%;
+}
+
+.column2 {
+    width: 53%;
+}
+
+.about-me .starter {
+    padding-top: 10%;
+
+}
+
+.about-me p {
+    margin-top: 10%;
+    font-size: var(--para1f);
+    /* color: #94A3B8; */
+    color: var(--para1c);
+    margin-bottom: 10px;
+    line-height: 46px;
+}
+
+.leftside h1,
+.leftside h2,
+.leftside p {
+    margin-bottom: 40px;
+}
+
+.leftside p {
+    color: var(--para1c);
+    font-size: var(--para1f);
+    line-height: 46px;
+}
+
+.leftside h1 {
+    font-size: 4rem;
+}
+
+.leftside h2 {
+    font-size: 1.6rem;
+}
+
+.leftside {
+    margin-top: 10%;
+
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.rightside {
+
+    overflow-y: scroll;
+    padding-bottom: 120px;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.sections {
+    margin-top: 30px;
+    padding-top: 100px;
+}
+
+.works-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.work-details h2 {
+    font-size: 1.4rem;
+}
+
+.work-details p {
+
+    color: var(--para1f);
+}
+
+.work-details h4 {
+    font-size: 1.2rem
+}
+
+.work {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.work-cont .work .year p {
+    margin-top: 0px;
+}
+
+.work-details p {
+    font-size: var(--para2f);
+    /* color: #94A3B8; */
+    color: var(--para1c);
+    line-height: 43px;
+}
+
+.work-details h2 {
+    margin-bottom: 0px;
+}
+
+.work-details h2,
+.work-details h4 {
+    margin-bottom: 20px;
+}
+
+.work-details h4 {
+    font-size: 1.3rem;
+    color: var(--h4c);
+    font-weight: 600;
+}
+
+.year p {
+    font-size: 1.1rem;
+    color: var(--h4c);
+    font-weight: 600;
+}
+
+.work {
+    padding: 40px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.work:hover {
+    background-color: #4a546542;
+    /* filter: blur(0.4); */
+    border-radius: 10px;
+}
+
+.work:hover h2 {
+    color: aqua;
+}
+
+.work-details h2 {
+    position: relative;
+    display: inline-block;
+}
+
+.work-details h2::after {
+    content: '🚀';
+    position: relative;
+    margin-left: 0.2rem;
+    /* top: 1%;
+    right: 40%; */
+    opacity: 0.6;
+    scale: 0.9;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.work:hover .work-details h2::after {
+    /* Adjust this value based on your preference */
+    transform: translateX(+10%);
+    scale: 1;
+    opacity: 1;
+}
+
+.resume h2 {
+    position: relative;
+    display: inline-block;
+    font-size: 1.4rem;
+    scale: 0.93;
+    transition: all 0.2s;
+}
+
+.resume h2::after {
+    content: '🚀';
+    position: relative;
+    margin-left: 0.2rem;
+    /* top: 1%;
+    right: 40%; */
+    opacity: 0.6;
+    scale: 0.9;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.resume:hover .work-details h2::after {
+    /* Adjust this value based on your preference */
+    transform: translateX(+10%);
+    scale: 1;
+    opacity: 1;
+}
+
+.resume:hover h2 {
+    color: aqua;
+    scale: 1;
+}
+
+.resume:hover {
+    cursor: pointer;
+}
+
+.works-cont {
+    margin-bottom: 30px;
+}
+
+.skills {
+    padding: 20px;
+    margin-top: 60px;
+}
+
+.skills h1 {
+    margin-bottom: 40px;
+}
+
+.skills li {
+    color: var(--para1c);
+    font-size: var(--para1f);
+    margin: 18px;
+}
+
+/* BELOW IS PROJECTS CSS */
+
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.procont h2 {
+    font-size: 1.4rem;
+}
+
+.procont p {
+
+    color: var(--para1f);
+}
+
+.procont h4 {
+    font-size: 1.2rem
+}
+
+.project {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.projects-container .project .imagecont img {
+    width: 200px;
+}
+
+.procont p {
+    font-size: var(--para2f);
+    /* color: #94A3B8; */
+    color: var(--para1c);
+    line-height: 43px;
+}
+
+.procont h2 {
+    margin-bottom: 0px;
+}
+
+.procont h2 {
+    margin-bottom: 20px;
+}
+
+.procont h4 {
+    font-size: 1.3rem;
+    color: var(--h4c);
+    font-weight: 600;
+}
+
+.imagecont p {
+    font-size: 1.1rem;
+    color: var(--h4c);
+    font-weight: 600;
+}
+
+.project {
+    padding: 40px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.project:hover {
+    background-color: #4a546542;
+    /* filter: blur(0.4); */
+    border-radius: 10px;
+}
+
+.project:hover h2 {
+    color: aqua;
+}
+
+.procont h2 {
+    position: relative;
+    display: inline-block;
+}
+
+.procont h2::after {
+    content: '🚀';
+    position: relative;
+    margin-left: 0.2rem;
+    /* top: 1%;
+    right: 40%; */
+    opacity: 0.6;
+    scale: 0.9;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.project:hover .procont h2::after {
+    /* Adjust this value based on your preference */
+    transform: translateX(+10%);
+    scale: 1;
+    opacity: 1;
+}
+
+
+.projects-container {
+    padding: 80px 0px;
+}
+
+
+.nav a {
+    display: block;
+}
+
+.navbar {
+    display: block;
+    padding: 0px;
+}
+
+.navbar li a {
+    transition: 0.2s;
+    color: var(--para1c);
+    scale: 0.94;
+    font-size: 1.4rem;
+}
+
+.navbar li a:hover {
+    color: white;
+    scale: 1;
+}
+
+
+
+.sociallinks {
+    margin-top: 60px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: start;
+    gap: 40px;
+}
+
+.icon {
+    scale: 1.8;
+    color: rgb(196, 177, 177);
+}
+
+.navbar a {
+    display: inline-block;
+}
+
+.icon1 {
+    color: var(--para1c);
+}
+
+.navbar li .inactive {
+    opacity: 0.6;
+}
+
+.navbar li .active {
+    color: white;
+    scale: 1;
+    opacity: 1;
+}
+
+.leftside li a {
+    margin-left: 20px;
+}
+
+#Work-experience a {
+    text-decoration: none;
+}
+
+@media (width<1600px) {
+    .cont {
+        flex-direction: column;
+        overflow: scroll;
+        height: 100%;
+    }
+
+    body {
+        overflow: auto;
+    }
+
+    .leftside {
+        position: relative;
+        overflow: auto;
+        width: 100%;
+        height: auto;
+    }
+
+    .rightside {
+        width: 100%;
+        overflow: auto;
+    }
+
+    p.starter {
+        margin-top: 10px;
+    }
+
+    section {
+        width: 100%;
+    }
+
+    .sociallinks {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    body {
+        width: 90%;
+    }
+
+    :root {
+        --para1f: 22px;
+        --para2f: 21px;
+    }
+
+    .project {
+        flex-direction: column;
+    }
+
+    .imagecont {
+        text-align: center;
+    }
+
+    .projects-container .project .imagecont img {
+        width: 400px;
+    }
+}
