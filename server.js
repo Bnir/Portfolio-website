@@ -18,7 +18,7 @@ const password = process.env.MONGODB_PASSWORD
 
 
 
-mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.izhprbz.mongodb.net/registDB-Portfolio-gen`)
+mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.izhprbz.mongodb.net/Portfolio`)
 
 
 
@@ -28,6 +28,14 @@ app.get('/',(req,res)=>{
 app.get("/p1",(req,res)=>{
     res.render("/portfolio-1/index.ejs")
 })
+app.get("/p2",(req,res)=>{
+    res.render("/portfolio-2/index.ejs")
+})
+
+app.get("/p3",(req,res)=>{
+    res.render("/portfolio-3/index.ejs")
+})
+
 
 
 app.listen(port,(err)=>{
