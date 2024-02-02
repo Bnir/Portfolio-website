@@ -32,14 +32,14 @@ app.get('/',(req,res)=>{
     res.render('index.ejs')
 })
 app.get("/p1",(req,res)=>{
-    res.render("/portfolio-1/index.ejs",{resume:url("public/images/img1.png")})
+    res.render("portfolio-1/p-1index.ejs")
 })
 app.get("/p2",(req,res)=>{
-    res.render("/portfolio-2/index.ejs")
+    res.render("portfolio-2/p-2index.ejs")
 })
 
 app.get("/p3",(req,res)=>{
-    res.render("/portfolio-3/index.ejs")
+    res.render("portfolio-3/index.ejs")
 })
 
 
