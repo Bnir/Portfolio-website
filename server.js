@@ -35,6 +35,14 @@ app.get("/p1",(req,res)=>{
     res.render("portfolio-1/p-1index.ejs",{
         title:"Rahul Banger",
         name: "Saketh Parimi",
+        skillarray:{
+            skill_name:"web dev",
+            skill_info:"Its been a long dayyy "
+           },{
+            skill_name:"Prosittuion",
+            skill_info:"My day is supreb"
+
+           }
 
     })
 })

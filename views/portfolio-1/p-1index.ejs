@@ -78,49 +78,25 @@
         <section class="expertise-div" id="anchor-expertise">
 
             <div class="expertise-head"> My Expertise <hr></div>
-            <% skillarray.forEach(element => { %>
-             <div class="row">
-            <div class="col-sm-6 mb-3 mb-sm-0  h-100">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">
-                    <%=
-            <% }) %>
-            
-                    <% if (locals.skills-1) { %>
-                      skills-1
+           <ul>
+            <% if (locals.skillarray){%>
+           <%  skillarray.forEach(element => { %>
+            <li><h3>
+              <%=element %>
+            </h3>
                      
-                    <% } else { %> 
-                      
-                    <% } %>
-                    </h5>
-                  <p class="card-text"><% if (locals.skills1info) { %>
-                    skills1info
+                </li> 
+            
+            <% })}else{  %>
+            
+                <li> software DEvelopement </li>
+                <li>Web developemtn </li>
+                <li>JAVA</li>
+                         
                    
-                  <% } else { %> 
-                    <input name="title" contenteditable="true" class="noborder" placeholder="<a lttle para about it >">
-                  <% } %>
-                </p>
-     
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6  h-100">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title"><% if (locals.skills1info) { %>
-                    skills-1-info
-                   
-                  <% } else { %> 
-                    <input name="title" contenteditable="true" class="noborder" placeholder="<skills>">
-                  <% } %>
-                  </h5>
-                <p class="card-text"><% if (locals.skills2info) { %>
-                  skills2info
-                 
-                <% } else { %> 
-                  <input name="title" contenteditable="true" class="noborder" placeholder="<a lttle para about it >">
-                <% } %>
+                    <%}%>
+                
+           
                   <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                 </div>
               </div>
