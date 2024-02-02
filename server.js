@@ -39,12 +39,14 @@ app.get("/p2",(req,res)=>{
 })
 
 app.get("/p3",(req,res)=>{
-    res.render("portfolio-3/index.ejs")
+    res.render("portfolio-3/p-3index.ejs")
 })
-
-
-
-
+//
+// var popupS = require('popups');
+ 
+// popupS.alert({
+//     content: 'Hello World!'
+// });
 
 
 //model for mongoose
