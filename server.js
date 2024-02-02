@@ -24,7 +24,7 @@ const password = process.env.MONGODB_PASSWORD
 
 
 
-// mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.izhprbz.mongodb.net/Portfolio`)
+mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.suqnipw.mongodb.net/LoginRegDB`)
 
 
 
@@ -44,11 +44,82 @@ app.get("/p3",(req,res)=>{
 
 
 
+
+
+
+//model for mongoose
+
+// const regscema=new mongoose.Schema({
+//     name:String,
+//     email:String,
+//     password:String
+// })
+
+// const Registration = mongoose.model("Regsitration",regscema)
+
+
+//mongoose testing 
+
+// const fruitshema = new Schema ({
+//     name:String,
+//     rating:Number
+// })
+
+// const Fruit = mongoose.model("Fruit",fruitshema)
+
+// const fruit1= new Fruit({name:"mahesh" ,rating:9 })
+// fruit1.save()
+
+const regscema=new mongoose.Schema({
+    name:String,
+    email:String,
+    password:String
+})
+
+const Registration = mongoose.model("Regsitration",regscema)
+
+app.get("/success",(req,res)=>{
+    res.sendFile(__dirname + "/views/success.html")
+})
+app.get("/error",(req,res)=>{
+    res.sendFile(__dirname + "/views/error.html")
+})
+app.get("/register",(req,res)=>{
+    res.render("regist.ejs")
+})
+
+app.post("/register",async (req,res)=>{ 
+    try {
+        
+        const {name,email,password} = req.body
+        const exist = await Registration.findOne({email:email})
+        if (!exist)  {
+                const user = new Registration ({
+                name:name,
+                email:email,
+                password:password
+        })      
+                await user.save()
+                res.redirect("/success")}
+        else {
+            await res.render("regist.ejs",{alreadyexist:true})
+
+        }
+         
+        
+        
+    } catch (error) {
+        res.redirect("/error")
+    }
+})
+  
+
+
 app.listen(port,(err)=>{
     if (err) {
-        console.log('Error laude')
+        console.log('Error sir')
     }else{
-        console.log('Listening at port 5050')
+        console.log(`Listening at port ${port}`)
     }
     
 })
