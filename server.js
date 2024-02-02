@@ -32,7 +32,11 @@ app.get('/',(req,res)=>{
     res.render('index.ejs')
 })
 app.get("/p1",(req,res)=>{
-    res.render("portfolio-1/p-1index.ejs")
+    res.render("portfolio-1/p-1index.ejs",{
+        title:"Rahul Banger",
+        name: "Saketh Parimi",
+
+    })
 })
 app.get("/p2",(req,res)=>{
     res.render("portfolio-2/p-2index.ejs")
@@ -40,6 +44,11 @@ app.get("/p2",(req,res)=>{
 
 app.get("/p3",(req,res)=>{
     res.render("portfolio-3/p-3index.ejs")
+})
+
+
+app.get("/addinfo",(req,res)=>{
+    res.sendFile(__dirname + "/views/addinfo.html")
 })
 //
 // var popupS = require('popups');

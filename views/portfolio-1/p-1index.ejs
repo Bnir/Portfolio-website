@@ -21,8 +21,7 @@
             <a class="navbar-brand col-lg-3 me-0 text-white" href="#">
               
               <% if (locals.title) { %>
-                title
-               
+                <%=title %>
               <% } else { %> 
                 Portfolio
               <% } %>
@@ -47,7 +46,7 @@
             </ul>
             <div class="d-lg-flex col-lg-3 justify-content-lg-end">
                 <a href="<% if (locals.resume){ %>
-                  resume 
+                  <%resume%> 
 
                 <% }else {  %>
                   images/im1.png
@@ -64,7 +63,7 @@
 
         <div class="div-name">
           <% if (locals.name) { %>
-            name
+            <%=  name %>
            
           <% } else { %> 
   Mahesh dall
@@ -77,17 +76,22 @@
         <main class="main-body"> 
         <!-- expertise  -->
         <section class="expertise-div" id="anchor-expertise">
+
             <div class="expertise-head"> My Expertise <hr></div>
-            <div class="row">
+            <% skillarray.forEach(element => { %>
+             <div class="row">
             <div class="col-sm-6 mb-3 mb-sm-0  h-100">
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">
+                    <%=
+            <% }) %>
+            
                     <% if (locals.skills-1) { %>
                       skills-1
                      
                     <% } else { %> 
-                      <input name="title" contenteditable="true" class="noborder" placeholder="<skills>">
+                      
                     <% } %>
                     </h5>
                   <p class="card-text"><% if (locals.skills1info) { %>
