@@ -38,7 +38,12 @@
               
             </ul>
             <div class="d-lg-flex col-lg-3 justify-content-lg-end">
-                <a href="../../public/images/pics/Screenshot 2024-01-27 085008.png" download="resume">
+                <a href="<% if (locals.resume){ %>
+                  <%=resume %>
+
+                <% }else {  %>
+                  images/im1.png
+              <%  }%>" download="resume">
               <button class="btn resume-btn" >Resume</button></a>
             </div>
           </div>

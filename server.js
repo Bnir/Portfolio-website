@@ -1,6 +1,12 @@
 import express from "express";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import mongoose, { Schema, mongo } from "mongoose";
+import { strict } from "assert";
+import bodyParser from "body-parser";
+import dotenv from "dotenv"
+import pkg from 'body-parser';
+
 
 
 
@@ -18,7 +24,7 @@ const password = process.env.MONGODB_PASSWORD
 
 
 
-mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.izhprbz.mongodb.net/Portfolio`)
+// mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.izhprbz.mongodb.net/Portfolio`)
 
 
 
@@ -26,7 +32,7 @@ app.get('/',(req,res)=>{
     res.render('index.ejs')
 })
 app.get("/p1",(req,res)=>{
-    res.render("/portfolio-1/index.ejs")
+    res.render("/portfolio-1/index.ejs",{resume:url("public/images/img1.png")})
 })
 app.get("/p2",(req,res)=>{
     res.render("/portfolio-2/index.ejs")
