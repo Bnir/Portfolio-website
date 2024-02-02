@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/himanshu.css">
 </head>
 <body>
-    
+    <form action="/template1" method="post" > 
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg bg-transparent rounded" aria-label="Thirteenth navbar example">
         <div class="container-fluid rounded   ">
@@ -19,11 +19,12 @@
   
           <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
             <a class="navbar-brand col-lg-3 me-0 text-white" href="#">
+              
               <% if (locals.title) { %>
                 title
                
               <% } else { %> 
-              Portfolio
+                <input name="title" contenteditable="true" class="noborder" placeholder="<title>">
               <% } %></a>
             <ul class="navbar-nav col-lg-6 justify-content-lg-center">
               <li class="nav-item">
@@ -45,7 +46,7 @@
             </ul>
             <div class="d-lg-flex col-lg-3 justify-content-lg-end">
                 <a href="<% if (locals.resume){ %>
-                  <%=resume %>
+                  resume 
 
                 <% }else {  %>
                   images/im1.png
@@ -60,7 +61,13 @@
       <section class="homepage-container-img">    
       <div class="name-container" id="anchor-home"> 
 
-        <div class="div-name">Mahesh Dalle</div>
+        <div class="div-name">
+          <% if (locals.name) { %>
+            name
+           
+          <% } else { %> 
+            <input name="title" contenteditable="true" class="noborder" placeholder=" <NAME>">
+          <% } %></div>
     
         </div></section>
 
@@ -74,8 +81,21 @@
             <div class="col-sm-6 mb-3 mb-sm-0  h-100">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Software Developer</h5>
-                  <p class="card-text">Fully experienced in mern stack </p>
+                  <h5 class="card-title">
+                    <% if (locals.skills-1) { %>
+                      skills-1
+                     
+                    <% } else { %> 
+                      <input name="title" contenteditable="true" class="noborder" placeholder="<skills>">
+                    <% } %>
+                    </h5>
+                  <p class="card-text"><% if (locals.skills1info) { %>
+                    skills1info
+                   
+                  <% } else { %> 
+                    <input name="title" contenteditable="true" class="noborder" placeholder="<a lttle para about it >">
+                  <% } %>
+                </p>
      
                 </div>
               </div>
@@ -83,8 +103,19 @@
             <div class="col-sm-6  h-100">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Lassun bhaii </h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <h5 class="card-title"><% if (locals.skills1info) { %>
+                    skills-1-info
+                   
+                  <% } else { %> 
+                    <input name="title" contenteditable="true" class="noborder" placeholder="<skills>">
+                  <% } %>
+                  </h5>
+                <p class="card-text"><% if (locals.skills2info) { %>
+                  skills2info
+                 
+                <% } else { %> 
+                  <input name="title" contenteditable="true" class="noborder" placeholder="<a lttle para about it >">
+                <% } %>
                   <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                 </div>
               </div>
@@ -211,15 +242,7 @@
           </section>
 
 
-        
-          
-      
-
-
-
-
-
-        </main>
+        </main></form>
         <footer> <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
             <p>© 2024 Company, Inc. All rights reserved.</p>
             <ul class="list-unstyled d-flex">

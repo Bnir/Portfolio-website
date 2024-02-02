@@ -12,6 +12,11 @@ body{
        
     
 }
+
+.noborder{
+    border:none;
+    background-color: transparent;
+}
 .container-fluid{
 
     
@@ -41,7 +46,7 @@ body{
     
 }
 .div-name{
-    font-size: 125px;
+    font-size: 120px;
 
 }
 
@@ -51,7 +56,9 @@ body{
     background-image: url("../images/pics/Screenshot\ 2024-01-27\ 085008.png");
    
 }
+input {
 
+}
 .expertise-div{
     margin:4rem 4rem;
     height: 40vh;

@@ -6,7 +6,70 @@
     <title>Add_ur_info</title>
 </head>
 <body>
-    
+    <main class="page">
+        <section class="tags-wrapper">
+          <form method="post" action="/uploaddata" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Title</label><br>
+              <input type="text" class="form-control" id="exampleInputEmail1" name="recipename">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Recipe Description</label><br>
+              <textarea type="text" class="form-control" id="exampleInputPassword1" name="recipe_desc"></textarea>
+            </div>
+            <div class="mb-3 ">
+              <label for="exampleInputEmail1" class="form-label">Recipe Continent</label><br>
+              <select name="continent">
+                <option value="africa">Africa</option>
+                <option value="southAmerica">South America</option>
+                <option value="northAmerica">North America</option>
+                <option value="southAsia">South Asia</option>
+                <option value="northAsia">North Asia</option>
+                <option value="middleEast">Middle East</option>
+                <option value="europe">Europe</option>
+                <option value="oceania">Oceania</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Cook Time</label><br>
+              <input type="text" class="form-control" id="exampleInputPassword1" name="cooktime">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Prep Time</label><br>
+              <input type="text" class="form-control" id="exampleInputPassword1" name="preptime">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Servings</label><br>
+              <input type="text" class="form-control" id="exampleInputPassword1" name=servings>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Recipe Ingredients</label><br>
+              <textarea type="text" class="form-control" id="exampleInputPassword1" name="recipe_in"></textarea>
+              <label for="exampleInputPassword1" class="form-label">Enter each recipe Ingredients with 2 comma's</label>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Recipe Steps</label><br>
+              <textarea type="text" class="form-control" id="exampleInputPassword1" name="recipe_steps"></textarea>
+              <label for="exampleInputPassword1" class="form-label">Enter each recipe step with 2 comma's</label>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Nutrition values</label><br>
+              Calories:<input type="text" class="form-control" id="exampleInputPassword1" name="calories"><br>
+              Protein:<input type="text" class="form-control" id="exampleInputPassword1" name="protein"><br>
+              Fat:<input type="text" class="form-control" id="exampleInputPassword1" name="fat"><br>
+              Carbs:<input type="text" class="form-control" id="exampleInputPassword1" name="carbs"><br>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Upload Pic</label><br>
+              <input type="file" name="image">
+            </div>
+            <button class="btn btn-primary">Submit</button>
+          </form>
+        </section>
+        <section>
+          <img class="cookpic" src="../assets/recipes/uploadpic.jpg" alt="">
+        </section>
+      </main>
     
 </body>
 </html>
