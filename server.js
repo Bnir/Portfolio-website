@@ -30,7 +30,7 @@ mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.suqnipw.mongodb
 
 
 app.get('/',(req,res)=>{
-    res.render('index.html')
+    res.render('index.ejs')
 })
 app.get("/p1",(req,res)=>{
     res.render("portfolio-1/p-1index.ejs",{
