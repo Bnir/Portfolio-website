@@ -38,10 +38,6 @@ app.get("/p1",(req,res)=>{
         skillarray:{
             skill_name:"web dev",
             skill_info:"Its been a long dayyy "
-           },{
-            skill_name:"Prosittuion",
-            skill_info:"My day is supreb"
-
            }
 
     })
