@@ -62,6 +62,10 @@ body
     height: 5rem;
     padding-left: 10px;
 } */
+
+body{
+    margin:0 auto;
+}
 section
 {
     height: 100vh;

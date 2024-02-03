@@ -24,12 +24,13 @@ const password = process.env.MONGODB_PASSWORD
 
 
 
+
 mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.suqnipw.mongodb.net/LoginRegDB`)
 
 
 
 app.get('/',(req,res)=>{
-    res.render('index.ejs')
+    res.render('index.html')
 })
 app.get("/p1",(req,res)=>{
     res.render("portfolio-1/p-1index.ejs",{
