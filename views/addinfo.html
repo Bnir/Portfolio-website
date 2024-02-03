@@ -6,58 +6,39 @@
     <title>Add_ur_info</title>
 </head>
 <body>
-    <main class="page">
-        <section class="tags-wrapper">
-          <form method="post" action="/uploaddata" enctype="multipart/form-data">
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Title</label><br>
-              <input type="text" class="form-control" id="exampleInputEmail1" name="recipename">
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Recipe Description</label><br>
-              <textarea type="text" class="form-control" id="exampleInputPassword1" name="recipe_desc"></textarea>
-            </div>
-            
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Cook Time</label><br>
-              <input type="text" class="form-control" id="exampleInputPassword1" name="cooktime">
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Prep Time</label><br>
-              <input type="text" class="form-control" id="exampleInputPassword1" name="preptime">
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Servings</label><br>
-              <input type="text" class="form-control" id="exampleInputPassword1" name=servings>
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Recipe Ingredients</label><br>
-              <textarea type="text" class="form-control" id="exampleInputPassword1" name="recipe_in"></textarea>
-              <label for="exampleInputPassword1" class="form-label">Enter each recipe Ingredients with 2 comma's</label>
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Recipe Steps</label><br>
-              <textarea type="text" class="form-control" id="exampleInputPassword1" name="recipe_steps"></textarea>
-              <label for="exampleInputPassword1" class="form-label">Enter each recipe step with 2 comma's</label>
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Nutrition values</label><br>
-              Calories:<input type="text" class="form-control" id="exampleInputPassword1" name="calories"><br>
-              Protein:<input type="text" class="form-control" id="exampleInputPassword1" name="protein"><br>
-              Fat:<input type="text" class="form-control" id="exampleInputPassword1" name="fat"><br>
-              Carbs:<input type="text" class="form-control" id="exampleInputPassword1" name="carbs"><br>
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Upload Pic</label><br>
-              <input type="file" name="image">
-            </div>
-            <button class="btn btn-primary">Submit</button>
-          </form>
-        </section>
-        <section>
-          <img class="cookpic" src="../assets/recipes/uploadpic.jpg" alt="">
-        </section>
-      </main>
+  <!-- title
+  name
+  about
+  work exp (year choice -from --to )
+  skills /expertise 
+  about page photo (pfp)
+  social linsk
+  projects data & project link & images
+  resume  
+-->
+
+    <main>
+
+      <form action="/addbasic" method="post">
+        <input type="text" name="title" id="" placeholder="Title">
+        
+        <br> 
+        <input type="text" name="name" id="" placeholder="Name">
+        
+        <br> 
+        <input type="text" name="about" id="" placeholder="About me ">
+       
+        <br> 
+        
+        <button type="submit">SUBMIT</button>
+        <br> 
+
+      </form>
+
+
+
+
+    </main>
     
 </body>
 </html>

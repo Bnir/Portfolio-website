@@ -54,6 +54,39 @@ app.get("/p3",(req,res)=>{
 app.get("/addinfo",(req,res)=>{
     res.sendFile(__dirname + "/views/addinfo.html")
 })
+
+const BasicSchema = new Schema({
+    title:{
+        type:String,
+        required:true,
+    },
+    name:{
+        type:String,
+        required:true,
+    },
+    about:{
+        type:String,
+        required:true,
+    }
+    
+})
+const Basic = mongoose.model("BasicInfo",BasicSchema)
+
+
+app.post("/addbasic",(req,res)=>{
+    const {title,name,about} = req.body
+    const userinfo = new Basic({
+        name:name,
+        title:title,
+        about:about
+    })
+   userinfo.save()
+    console.log(name,title,about)
+
+    })  
+
+
+
 //
 // var popupS = require('popups');
  
