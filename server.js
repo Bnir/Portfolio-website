@@ -6,7 +6,7 @@ import { strict } from "assert";
 import bodyParser from "body-parser";
 import dotenv from "dotenv"
 import pkg from 'body-parser';
-
+import bcrypt from "bcrypt"
 
 
 
@@ -146,7 +146,10 @@ app.post("/register",async (req,res)=>{
                 const user = new Registration ({
                 name:name,
                 email:email,
-                password:password
+                password: await bcrypt.hash(password,10,(err,hash) =>{ 
+                    console;e.log("error")
+
+                })
         })      
                 await user.save()
                 res.redirect("/success")}
