@@ -14,7 +14,7 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import connectMongoDBSession from "connect-mongodb-session";
 
 // Destructure the named export
-const { MongoDBStore } = connectMongoDBSession;
+const MongoDBStore = connectMongoDBSession.default;
 
 const { json } = pkg;
 dotenv.config();
@@ -22,7 +22,7 @@ const username = process.env.MONGODB_USERNAME;
 const password = process.env.MONGODB_PASSWORD;
 
 const app = express() ;
-const MongoDBStoreSession = MongoDBStore(session);
+// const MongoDBStoreSession = MongoDBStore(session);
 
 const storage = multer.memoryStorage(); // Save the file in memory as a Buffer
 const upload = multer({ storage: storage });
@@ -33,7 +33,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 app.use(express.json())
 
 const monguri = `mongodb+srv://${username}:${password}@cluster0.suqnipw.mongodb.net/LoginRegDB`
-const store = new MongoDBStoreSession({
+const store = new MongoDBStore({
   uri: monguri,
   collection: 'sessions',
 });
