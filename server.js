@@ -11,28 +11,40 @@ import session from 'express-session';
 import multer from "multer";
 import passport from "passport";
 import { Strategy as LocalStrategy } from 'passport-local';
+import { MongoDBStore } from "connect-mongodb-session";
 
 const { json } = pkg;
-dotenv.config()
+dotenv.config();
+const username = process.env.MONGODB_USERNAME;
+const password = process.env.MONGODB_PASSWORD;
+
 const app = express() ;
+const MongoDBStoreSession = MongoDBStore(session);
+
+const storage = multer.memoryStorage(); // Save the file in memory as a Buffer
+const upload = multer({ storage: storage });
 const port =process.env.PORT || 5000;
 app.use(express.static('public'));
 app.use(express.urlencoded({extended:true}))
 const __dirname = dirname(fileURLToPath(import.meta.url))
 app.use(express.json())
-app.use(session({ secret: 'halwaaaabhengan102001200120001', resave: true, saveUninitialized: true }));
+
+const monguri = `mongodb+srv://${username}:${password}@cluster0.suqnipw.mongodb.net/LoginRegDB`
+const store = new MongoDBStoreSession({
+  uri: monguri,
+  collection: 'sessions',
+});
+
+// app.use(session({ secret: 'halwaaaabhengan102001200120001', resave: true, saveUninitialized: true }));
 app.set('view engine', 'ejs');
 app.use(passport.initialize());
 app.use(passport.session());
-
-
-
-
-const username = process.env.MONGODB_USERNAME;
-const password = process.env.MONGODB_PASSWORD;
-
-const storage = multer.memoryStorage(); // Save the file in memory as a Buffer
-const upload = multer({ storage: storage });
+app.use(session({
+  secret: 'halwaaaabhengan102001200120001',
+  resave: false,
+  saveUninitialized: true,
+  store: store
+}));
 
 
 mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.suqnipw.mongodb.net/LoginRegDB`)
