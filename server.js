@@ -7,7 +7,7 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv"
 import pkg from 'body-parser';
 import bcrypt from "bcrypt"
-
+import session from 'express-session';
 
 
 
@@ -141,18 +141,17 @@ app.post("/register",async (req,res)=>{
     try {
         
         const {name,email,password} = req.body
-        const exist = await Registration.findOne({email:email})
-        if (!exist)  {
-                const user = new Registration ({
+        const exist = await Registration.findOne({ email:email })
+        console.log(exist+"hitaa");
+        const hashpass= await bcrypt.hash(password,10)
+        if (!exist)  {const user = new Registration ({
                 name:name,
                 email:email,
-                password: await bcrypt.hash(password,10,(err,hash) =>{ 
-                    console;e.log("error")
-
-                })
-        })      
+                password: hashpass})
                 await user.save()
                 res.redirect("/success")}
+                
+                
         else {
             await res.render("regist.ejs",{alreadyexist:true})
 
@@ -162,6 +161,7 @@ app.post("/register",async (req,res)=>{
         
     } catch (error) {
         res.redirect("/error")
+        console.log(error);
     }
 })
   
@@ -175,3 +175,82 @@ app.listen(port,(err)=>{
     }
     
 })
+
+
+
+
+
+//login part
+
+app.get("/login",(req,res)=>{
+    res.sendFile(__dirname+ "/views/login.html")
+})
+
+app.use(session({ secret: 'lassunlaude', resave: true, saveUninitialized: true }));
+
+
+
+// const userSchema = new mongoose.Schema({
+//   username: String,
+//   password: String
+// });
+
+
+// app.post('/register', async (req, res) => {
+//   try {
+//     const { username, password } = req.body;
+//     const hashedPassword = await bcrypt.hash(password, 10);
+//     const newUser = new User({ username, password: hashedPassword });
+//     await newUser.save();
+//     res.status(201).send('User registered successfully');
+//   } catch (error) {
+//     res.status(500).send('Error registering user');
+//   }
+// });
+
+  
+// const {name,email,password} = req.body
+// const exist = await Registration.findOne({ email:email })
+// console.log(exist+"hitaa");
+// const hashpass= await bcrypt.hash(password,10)
+// if (!exist)  {const user = new Registration ({
+//         name:name,
+//         email:email,
+//         password: hashpass})
+//         await user.save()
+//         res.redirect("/success")}
+        
+        
+// else {
+//     await res.render("regist.ejs",{alreadyexist:true})
+
+// }
+ 
+
+app.post('/login', async (req, res) => {
+  try {
+    const { username, email,password} = req.body;
+    console.log(username,password,email)
+    const exist = await Registration.findOne({email:email})
+
+    if (exist && (await bcrypt.compare(password, exist.password))) {
+      req.session.userId = user._id;
+      res.status(200).send('Login successful');
+    } else {
+      res.status(401).send('Invalid credentials');
+    }
+  } catch (error) {
+    res.status(500).send('Error during login' + " boskdi");
+  }
+});
+
+// app.post('/logout', (req, res) => {
+//   req.session.destroy((err) => {
+//     if (err) {
+//       res.status(500).send('Error logging out');
+//     } else {
+//       res.clearCookie('connect.sid');
+//       res.status(200).send('Logout successful');
+//     }
+//   });
+// });
