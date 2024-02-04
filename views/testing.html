@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toggle Visibility</title>
+</head>
+<body>
+  <div id="container" style="display: none;">
+    <!-- Your container content goes here -->
+    <p>This is the container content.</p>
+  </div>
+  <button id="toggleButton" onclick="toggleContainerVisibility()">Toggle Visibility</button>
+
+  <script>
+    function toggleContainerVisibility() {
+      var container = document.getElementById('container');
+      // Toggle the visibility of the container using plain JavaScript
+      container.style.display = (container.style.display === 'none') ? 'block' : 'none';
+    }
+  </script>
+</body>
+</html>

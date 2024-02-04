@@ -68,7 +68,7 @@ app.get("/p3",requireLogin,(req,res)=>{
 })
 
 
-app.get("/addinfo",requireLogin,(req,res)=>{
+app.get("/addinfo",(req,res)=>{
     res.sendFile(__dirname + "/views/addinfo.html")
 })
 

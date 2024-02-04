@@ -35,7 +35,7 @@
           <p id="checker"></p>
           <br>
 
-          <button id="buttonn" type="submit" onclick="$('.template').set.attr">SUBMIT</button>
+          <button id="buttonn" type="submit" onclick="toggleContainerVisibility()">SUBMIT</button>
           <br>
 
       </div>
@@ -49,7 +49,7 @@
 
         </div>
         <div class="former">
-          <input type="file" name="files" id="imageInput" onchange="togglevis()">
+          <input type="file" name="files" id="imageInput" onchange="previewImage">
           <!-- <button type="submit">Upload</button> -->
         </div>
 
@@ -96,8 +96,10 @@
         preview.src = "/images/OIP.jpeg";
       }
     }
-    function togglevis(){
-      document.getElementById("template").style.display==="none"
+    function toggleContainerVisibility() {
+      var container = document.getElementById('template');
+      // Toggle the visibility of the container using plain JavaScript
+      container.style.display = (container.style.display === 'none') ? 'block' : 'none';
     }
 
   </script>
