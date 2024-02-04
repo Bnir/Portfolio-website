@@ -14,7 +14,7 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import connectMongoDBSession from "connect-mongodb-session";
 
 // Destructure the named export
-const MongoDBStore = connectMongoDBSession.default;
+const { default: MongoDBStore } = connectMongoDBSession;
 
 const { json } = pkg;
 dotenv.config();
