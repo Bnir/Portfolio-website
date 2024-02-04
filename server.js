@@ -8,6 +8,7 @@ import dotenv from "dotenv"
 import pkg from 'body-parser';
 import bcrypt from "bcrypt"
 import session from 'express-session';
+import multer from "multer";
 
 
 
@@ -19,20 +20,38 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended:true}))
 const __dirname = dirname(fileURLToPath(import.meta.url))
 app.use(bodyParser.json())
+app.use(session({ secret: 'halwaaaabhengan102001200120001', resave: true, saveUninitialized: true }));
+
+
 const username = process.env.MONGODB_USERNAME
 const password = process.env.MONGODB_PASSWORD
 
-
+const storage = multer.memoryStorage(); // Save the file in memory as a Buffer
+const upload = multer({ storage: storage });
 
 
 mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.suqnipw.mongodb.net/LoginRegDB`)
+// Assuming you have already set up your Express app and session middleware
+// ...
 
+// Middleware to check if the user is logged in
+const requireLogin = (req, res, next) => {
+    if (req.session.userId) {
+      // User is logged in, proceed to the next middleware or route handler
+      next();
+    } else {
+      // User is not logged in, redirect to the login page or send an unauthorized response
+      res.redirect('/login'); // You can replace '/login' with the path to your login page
+      // Alternatively, you can send an unauthorized response like res.status(401).send('Unauthorized');
+    }
+  };
+  
 
 
 app.get('/',(req,res)=>{
     res.render('index.ejs')
 })
-app.get("/p1",(req,res)=>{
+app.get("/p1",requireLogin,(req,res)=>{
     res.render("portfolio-1/p-1index.ejs",{
         title:"Rahul Banger",
         name: "Saketh Parimi",
@@ -43,48 +62,59 @@ app.get("/p1",(req,res)=>{
 
     })
 })
-app.get("/p2",(req,res)=>{
+app.get("/p2",requireLogin,(req,res)=>{
     res.render("portfolio-2/p-2index.ejs")
 })
 
-app.get("/p3",(req,res)=>{
+app.get("/p3",requireLogin,(req,res)=>{
     res.render("portfolio-3/p-3index.ejs")
 })
 
 
-app.get("/addinfo",(req,res)=>{
+app.get("/addinfo",requireLogin,(req,res)=>{
     res.sendFile(__dirname + "/views/addinfo.html")
 })
 
+
 const BasicSchema = new Schema({
-    title:{
-        type:String,
-        required:true,
+    title: {
+        type: String,
+        required: true,
     },
-    name:{
-        type:String,
-        required:true,
+    name: {
+        type: String,
+        required: true,
     },
-    about:{
-        type:String,
-        required:true,
+    about: {
+        type: String,
+        required: true,
+    },
+    image: {
+        data: Buffer,
+        contentType: String
     }
+
     
 })
 const Basic = mongoose.model("BasicInfo",BasicSchema)
 
 
-app.post("/addbasic",(req,res)=>{
-    const {title,name,about} = req.body
-    const userinfo = new Basic({
-        name:name,
-        title:title,
-        about:about
-    })
-   userinfo.save()
-    console.log(name,title,about)
 
-    })  
+app.post("/addbasic", upload.single('files'), (req, res) => {
+    const { title, name, about, hello } = req.body;
+    const imageBuffer = req.file.buffer;
+
+    const userinfo = new Basic({
+        name: name,
+        title: title,
+        about: about,
+        image: { data: imageBuffer, contentType: req.file.mimetype }
+    })
+    userinfo.save()
+    console.log(req);
+
+})
+
 
 
 
@@ -142,13 +172,14 @@ app.post("/register",async (req,res)=>{
         
         const {name,email,password} = req.body
         const exist = await Registration.findOne({ email:email })
-        console.log(exist+"hitaa");
+
         const hashpass= await bcrypt.hash(password,10)
         if (!exist)  {const user = new Registration ({
                 name:name,
                 email:email,
                 password: hashpass})
                 await user.save()
+                mongoose.connection.close()
                 res.redirect("/success")}
                 
                 
@@ -185,8 +216,6 @@ app.listen(port,(err)=>{
 app.get("/login",(req,res)=>{
     res.sendFile(__dirname+ "/views/login.html")
 })
-
-app.use(session({ secret: 'lassunlaude', resave: true, saveUninitialized: true }));
 
 
 
@@ -229,13 +258,16 @@ app.use(session({ secret: 'lassunlaude', resave: true, saveUninitialized: true }
 
 app.post('/login', async (req, res) => {
   try {
+    const lurl =req.get('Referer') || '/';
     const { username, email,password} = req.body;
-    console.log(username,password,email)
     const exist = await Registration.findOne({email:email})
 
-    if (exist && (await bcrypt.compare(password, exist.password))) {
-      req.session.userId = user._id;
-      res.status(200).send('Login successful');
+    const newpass=await bcrypt.compare(password, exist.password)
+    if (exist && newpass) {
+      req.session.userId = exist._id;
+      const redirectTo = req.session.returnTo || '/';
+      delete req.session.returnTo; // Clear the stored URL
+      res.redirect(redirectTo);
     } else {
       res.status(401).send('Invalid credentials');
     }
@@ -243,6 +275,24 @@ app.post('/login', async (req, res) => {
     res.status(500).send('Error during login' + " boskdi");
   }
 });
+
+// app.post('/login', async (req, res) => {
+//     try {
+//       const { username, password } = req.body;
+//       const user = await User.findOne({ username });
+  
+//       if (user && (await bcrypt.compare(password, user.password))) {
+//         req.session.userId = user._id;
+//         res.status(200).send('Login successful');
+//       } else {
+//         res.status(401).send('Invalid credentials');
+//       }
+//     } catch (error) {
+//       res.status(500).send('Error during login');
+//     }
+//   });
+
+
 
 // app.post('/logout', (req, res) => {
 //   req.session.destroy((err) => {
@@ -254,3 +304,7 @@ app.post('/login', async (req, res) => {
 //     }
 //   });
 // });
+
+
+
+  

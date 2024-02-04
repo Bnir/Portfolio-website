@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add_ur_info</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add_ur_info</title>
+  <link rel="stylesheet" href="/css/info1.css">
 </head>
+
 <body>
   <!-- title
   name
@@ -17,28 +20,85 @@
   resume  
 -->
 
-    <main>
+  <main class="cont">
+    <div class="totalcont">
+      <div class="formleft">
+        <form action="/addbasic" method="post" enctype="multipart/form-data">
+          <input type="text" name="title" id="" placeholder="Title">
 
-      <form action="/addbasic" method="post">
-        <input type="text" name="title" id="" placeholder="Title">
-        
-        <br> 
-        <input type="text" name="name" id="" placeholder="Name">
-        
-        <br> 
-        <input type="text" name="about" id="" placeholder="About me ">
-       
-        <br> 
-        
-        <button type="submit">SUBMIT</button>
-        <br> 
+          <br>
+          <input type="text" name="name" id="" placeholder="Name">
 
+          <br>
+          <textarea id="texter" name="about" id="about" cols="30" rows="5"
+            placeholder="About Me (Minimum 100 words)"></textarea>
+          <p id="checker"></p>
+          <br>
+
+          <button id="buttonn" type="submit">SUBMIT</button>
+          <br>
+
+      </div>
+      <div class="formright">
+        <div class="im">
+
+          <div class="imgcont">
+            <img id="previewer" src="/images/OIP.jpeg.jpg" alt="">
+          </div>
+          <p>Your Photo</p>
+
+        </div>
+        <div class="former">
+          <input type="file" name="files" id="imageInput" onchange="previewImage()">
+          <!-- <button type="submit">Upload</button> -->
+        </div>
+
+      </div>
       </form>
 
+    </div>
 
 
 
-    </main>
-    
+
+
+
+  </main>
+  <script>
+    let check = document.getElementById('checker');
+    let texter = document.getElementById('texter');
+    let buttons = document.getElementById('buttonn');
+    buttons.addEventListener('click', () => {
+      if (textvalue.length < 100) {
+        alert("Minimum 100 characters are required in about me");
+      }
+    })
+    texter.addEventListener('input', () => {
+      var textvalue = texter.value;
+      var counter = textvalue.length;
+      if (counter <= 100) {
+        check.innerText = `${100 - counter} more characters needed`;
+      }
+    })
+
+    function previewImage() {
+      var input = document.getElementById('imageInput');
+      var preview = document.getElementById('previewer');
+      var file = input.files[0];
+      var reader = new FileReader();
+
+      reader.onloadend = function () {
+        preview.src = reader.result;
+      };
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+      else {
+        preview.src = "/images/OIP.jpeg";
+      }
+    }
+
+  </script>
 </body>
+
 </html>

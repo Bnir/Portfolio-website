@@ -1,0 +1,113 @@
+body {
+    background-color: rgb(159, 107, 47);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cont {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.formleft {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    border-right: 1px solid black;
+}
+
+.formleft input {
+    width: 90%;
+    margin: 10px 0;
+    display: flex;
+    flex: 1 1 0;
+    max-width: 700px;
+    padding: 10px 4px;
+
+}
+
+.formleft textarea {
+    width: 90%;
+    height: 10v mar;
+}
+
+.formleft form {
+    width: 70%;
+}
+
+.formright {
+    margin-left: 20px;
+    width: 90%;
+}
+
+.totalcont {
+    background-color: rgb(83, 145, 109);
+    display: flex;
+    border-radius: 10px;
+    width: 100%;
+    height: 60vh;
+    align-items: center;
+    justify-content: center;
+}
+
+p {
+    margin: 0;
+}
+
+.imgcont {
+    width: 14vw;
+    height: 14vw;
+    border-radius: 50%;
+    overflow: hidden;
+
+}
+
+.imgcont img {
+    background-clip: border-box;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.formright {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.im {
+    text-align: center;
+}
+
+.former {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.former form {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.former button {
+    background-color: rgb(78, 78, 195);
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: white;
+}
