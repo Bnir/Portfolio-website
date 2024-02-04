@@ -35,7 +35,7 @@
           <p id="checker"></p>
           <br>
 
-          <button id="buttonn" type="submit">SUBMIT</button>
+          <button id="buttonn" type="submit" onclick="$('.template').set.attr">SUBMIT</button>
           <br>
 
       </div>
@@ -49,21 +49,20 @@
 
         </div>
         <div class="former">
-          <input type="file" name="files" id="imageInput" onchange="previewImage()">
+          <input type="file" name="files" id="imageInput" onchange="togglevis()">
           <!-- <button type="submit">Upload</button> -->
         </div>
 
       </div>
       </form>
 
-    </div>
-
-
-
-
-
-
   </main>
+
+    <div class="template" id="template" style="display:none;">
+      <div class="temp-card"><img src="/images/temp1.png" alt="temp1 image"> </div>
+      <div class="temp-card"> <img src="/images/temp2.png" alt="temp1 image"></div>
+      <div class="temp-card"> <img src="/images/temp3.png" alt="temp1 image"></div>
+    </div>
   <script>
     let check = document.getElementById('checker');
     let texter = document.getElementById('texter');
@@ -96,6 +95,9 @@
       else {
         preview.src = "/images/OIP.jpeg";
       }
+    }
+    function togglevis(){
+      document.getElementById("template").style.display==="none"
     }
 
   </script>

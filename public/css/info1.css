@@ -1,10 +1,12 @@
-body {
+main {
     background-color: rgb(159, 107, 47);
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
+body{
+    background-color: rgb(159, 107, 47);
+}
 .cont {
     display: flex;
     width: 80%;
@@ -110,4 +112,27 @@ p {
     padding: 5px 10px;
     border-radius: 10px;
     color: white;
+}
+
+.template{
+    margin:0 auto;
+    width: 80vw;
+    display: flex;
+    height: 40%;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.temp-card{
+    height:100%;
+    width: 33%;
+
+
+}
+.temp-card img{
+    height: 100%;
+    width: 100%;
+}
+body{
+    align-content: center;
 }

@@ -53,12 +53,9 @@ app.get('/',(req,res)=>{
 })
 app.get("/p1",requireLogin,(req,res)=>{
     res.render("portfolio-1/p-1index.ejs",{
-        title:"Rahul Banger",
-        name: "Saketh Parimi",
-        skillarray:{
-            skill_name:"web dev",
-            skill_info:"Its been a long dayyy "
-           }
+        title:"Portfolio",
+        name: "Mahesh DAlle",
+        skillarray:["mike","lassun"]
 
     })
 })
