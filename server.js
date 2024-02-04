@@ -21,6 +21,7 @@ app.use(express.urlencoded({extended:true}))
 const __dirname = dirname(fileURLToPath(import.meta.url))
 app.use(express.json())
 app.use(session({ secret: 'halwaaaabhengan102001200120001', resave: true, saveUninitialized: true }));
+app.set('views', '/var/task/views');
 app.set('view engine', 'ejs');
 app.use(passport.initialize());
 app.use(passport.session());
@@ -28,8 +29,8 @@ app.use(passport.session());
 
 
 
-const username = process.env.MONGODB_USERNAME
-const password = process.env.MONGODB_PASSWORD
+const username = process.env.MONGODB_USERNAME;
+const password = process.env.MONGODB_PASSWORD;
 
 const storage = multer.memoryStorage(); // Save the file in memory as a Buffer
 const upload = multer({ storage: storage });
