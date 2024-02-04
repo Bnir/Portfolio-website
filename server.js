@@ -9,9 +9,9 @@ import pkg from 'body-parser';
 import bcrypt from "bcrypt"
 import session from 'express-session';
 import multer from "multer";
+import passport from "passport";
+import { Strategy as LocalStrategy } from 'passport-local';
 
-
-app.set('view engine', 'ejs');
 const { json } = pkg;
 dotenv.config()
 const app = express() ;
@@ -19,8 +19,13 @@ const port =process.env.PORT || 5000;
 app.use(express.static('public'));
 app.use(express.urlencoded({extended:true}))
 const __dirname = dirname(fileURLToPath(import.meta.url))
-app.use(bodyParser.json())
+app.use(express.json())
 app.use(session({ secret: 'halwaaaabhengan102001200120001', resave: true, saveUninitialized: true }));
+app.set('view engine', 'ejs');
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 
 
 const username = process.env.MONGODB_USERNAME
@@ -45,7 +50,41 @@ const requireLogin = (req, res, next) => {
       // Alternatively, you can send an unauthorized response like res.status(401).send('Unauthorized');
     }
   };
+  //passport config
   
+// Passport configuration
+passport.use(new LocalStrategy({
+    usernameField: 'email', // Use 'email' as the username field
+    passwordField: 'password',
+  }, async (email, password, done) => {
+    try {
+      const user = await Registration.findOne({ email:email });
+      console.log(user.email);
+      if (!user || !user.verifyPassword(password)) {
+        return done(null, false, { message: 'Invalid email or password' });
+      }
+  
+      return done(null, user);
+    } catch (error) {
+      return done(error);
+    }
+  }));
+  
+//for passport to authenticate and set email as unique id
+
+passport.serializeUser((user, done) => {
+    done(null, user.email); // Use email as the unique identifier
+  });
+  
+  passport.deserializeUser(async (email, done) => {
+    try {
+      const user = await Registration.findOne({ email:email });
+      done(null, user);
+    } catch (error) {
+      done(error, null);
+    }
+  });
+
 
 
 app.get('/',(req,res)=>{
@@ -68,7 +107,7 @@ app.get("/p3",requireLogin,(req,res)=>{
 })
 
 
-app.get("/addinfo",(req,res)=>{
+app.get("/addinfo",requireLogin,(req,res)=>{
     res.sendFile(__dirname + "/views/addinfo.html")
 })
 
@@ -91,15 +130,15 @@ const BasicSchema = new Schema({
         contentType: String
     },
     skills:{
-        type:Object,
+        type:[String],
         requred:true
     },
     projects:{
-        type:Object,
+        type:[String],
         requred:true
     },
     experience:{
-        type:Object,
+        type:[String],
         requred:true
     }
 
@@ -109,9 +148,18 @@ const Basic = mongoose.model("BasicInfo",BasicSchema)
 
 
 
-app.post("/addbasic", upload.single('files'), (req, res) => {
+app.post("/addbasic", upload.single('files'), async (req, res) => {
     const { title, name, about, hello } = req.body;
     const imageBuffer = req.file.buffer;
+    
+    // const user = await Registration.findOne({ email:user_email });
+
+    // if (user) {
+    //   // Update associated data for the user
+    //   user.associatedData = newData;
+
+    //   // Save the updated user
+    //   await user.save();
 
     const userinfo = new Basic({
         name: name,
@@ -120,12 +168,14 @@ app.post("/addbasic", upload.single('files'), (req, res) => {
         image: { data: imageBuffer, contentType: req.file.mimetype }
     })
     userinfo.save()
-    console.log(req);
+    res.redirect("/template")
 
 })
 
 
-
+app.get("/template",(req,res)=>{
+    res.sendFile(__dirname+"/views/templpage.html")
+})
 
 //
 // var popupS = require('popups');
@@ -180,16 +230,17 @@ app.get("/register",(req,res)=>{
 app.post("/register",async (req,res)=>{ 
     try {
         
-        const {name,email,password} = req.body
+        const {name,email,password,associatedData} = req.body
         const exist = await Registration.findOne({ email:email })
 
         const hashpass= await bcrypt.hash(password,10)
         if (!exist)  {const user = new Registration ({
                 name:name,
                 email:email,
-                password: hashpass})
+                password: hashpass,
+                associatedData:associatedData})
                 await user.save()
-                mongoose.connection.close()
+            
                 res.redirect("/success")}
                 
                 
@@ -270,6 +321,7 @@ app.post('/login', async (req, res) => {
   try {
     const lurl =req.get('Referer') || '/';
     const { username, email,password} = req.body;
+    var user_email=email
     const exist = await Registration.findOne({email:email})
 
     const newpass=await bcrypt.compare(password, exist.password)
