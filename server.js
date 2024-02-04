@@ -42,12 +42,12 @@ app.use(session({ secret: 'halwaaaabhengan102001200120001', resave: true, saveUn
 app.set('view engine', 'ejs');
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(session({
-  secret: 'halwaaaabhengan102001200120001',
-  resave: false,
-  saveUninitialized: true,
-  store: store
-}));
+// app.use(session({
+//   secret: 'halwaaaabhengan102001200120001',
+//   resave: false,
+//   saveUninitialized: true,
+//   store: store
+// }));
 
 
 mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.suqnipw.mongodb.net/LoginRegDB`)
