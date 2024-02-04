@@ -11,7 +11,7 @@ import session from 'express-session';
 import multer from "multer";
 
 
-
+app.set('view engine', 'ejs');
 const { json } = pkg;
 dotenv.config()
 const app = express() ;
@@ -89,6 +89,18 @@ const BasicSchema = new Schema({
     image: {
         data: Buffer,
         contentType: String
+    },
+    skills:{
+        type:Object,
+        requred:true
+    },
+    projects:{
+        type:Object,
+        requred:true
+    },
+    experience:{
+        type:Object,
+        requred:true
     }
 
     
@@ -149,7 +161,8 @@ app.post("/addbasic", upload.single('files'), (req, res) => {
 const regscema=new mongoose.Schema({
     name:String,
     email:String,
-    password:String
+    password:String,
+    associatedData:Object
 })
 
 const Registration = mongoose.model("Regsitration",regscema)
