@@ -11,7 +11,10 @@ import session from 'express-session';
 import multer from "multer";
 import passport from "passport";
 import { Strategy as LocalStrategy } from 'passport-local';
-import { MongoDBStore } from "connect-mongodb-session";
+import connectMongoDBSession from "connect-mongodb-session";
+
+// Destructure the named export
+const { MongoDBStore } = connectMongoDBSession;
 
 const { json } = pkg;
 dotenv.config();
