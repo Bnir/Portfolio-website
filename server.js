@@ -11,10 +11,10 @@ import session from 'express-session';
 import multer from "multer";
 import passport from "passport";
 import { Strategy as LocalStrategy } from 'passport-local';
-import connectMongoDBSession from "connect-mongodb-session";
+// import connectMongoDBSession from "connect-mongodb-session";
 
 // Destructure the named export
-const { default: MongoDBStore } = connectMongoDBSession;
+// const { default: MongoDBStore } = connectMongoDBSession;
 
 const { json } = pkg;
 dotenv.config();
@@ -32,13 +32,13 @@ app.use(express.urlencoded({extended:true}))
 const __dirname = dirname(fileURLToPath(import.meta.url))
 app.use(express.json())
 
-const monguri = `mongodb+srv://${username}:${password}@cluster0.suqnipw.mongodb.net/LoginRegDB`
-const store = new MongoDBStore({
-  uri: monguri,
-  collection: 'sessions',
-});
+// const monguri = `mongodb+srv://${username}:${password}@cluster0.suqnipw.mongodb.net/LoginRegDB`
+// const store = new MongoDBStore({
+//   uri: monguri,
+//   collection: 'sessions',
+// });
 
-// app.use(session({ secret: 'halwaaaabhengan102001200120001', resave: true, saveUninitialized: true }));
+app.use(session({ secret: 'halwaaaabhengan102001200120001', resave: true, saveUninitialized: true }));
 app.set('view engine', 'ejs');
 app.use(passport.initialize());
 app.use(passport.session());
