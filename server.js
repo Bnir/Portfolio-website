@@ -40,7 +40,7 @@ app.use(express.json())
 //   collection: 'sessions',
 // });
 
-// app.use(session({ secret: 'halwaaaabhengan102001200120001', resave: true, saveUninitialized: true }));
+app.use(session({ secret: 'halwaaaabhengan102001200120001', resave: true, saveUninitialized: true }));
 app.set('view engine', 'ejs');
 app.use(passport.initialize());
 app.use(passport.session());
@@ -53,18 +53,18 @@ app.use(passport.session());
 
 
 
-const store = new RedisStore({
-  host: 'localhost',
-  port: 6379,
-  // Add additional options if needed
-});
+// const store = new RedisStore({
+//   host: 'localhost',
+//   port: 6379,
+//   // Add additional options if needed
+// });
 
-app.use(session({
-  secret: 'halwaaaabhengan102001200120001',
-  resave: false,
-  saveUninitialized: true,
-  store, // In ES6, you can directly use the variable name as a shorthand
-}));
+// app.use(session({
+//   secret: 'halwaaaabhengan102001200120001',
+//   resave: false,
+//   saveUninitialized: true,
+//   store, // In ES6, you can directly use the variable name as a shorthand
+// }));
 
 
 mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.suqnipw.mongodb.net/LoginRegDB`)
@@ -270,7 +270,8 @@ app.post("/register",async (req,res)=>{
                 name:name,
                 email:email,
                 password: hashpass,
-                associatedData:associatedData})
+                associatedData:associatedData
+                })
                 await user.save()
             
                 res.redirect("/success")}
@@ -307,7 +308,7 @@ app.listen(port,(err)=>{
 //login part
 
 app.get("/login",(req,res)=>{
-    res.sendFile(__dirname+ "/views/login.html")
+    res.render("login.ejs")
 })
 
 
