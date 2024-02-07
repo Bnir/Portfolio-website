@@ -70,6 +70,25 @@
       <div class="temp-card"> <img src="/images/temp2.png" alt="temp1 image"></div>
       <div class="temp-card"> <img src="/images/temp3.png" alt="temp1 image"></div>
     </div>
+
+    <form id="workExperienceForm">
+      <div id="experienceInputs">
+        <div class="experience">
+          <label for="jobTitle1">Job Title:</label>
+          <input type="text" name="jobTitle[]" id="jobTitle1" required>
+          <label for="companyName1">Company Name:</label>
+          <input type="text" name="companyName[]" id="companyName1" required>
+          <label for="yearsWorked1">Years Worked:</label>
+          <input type="text" name="yearsWorked[]" id="yearsWorked1" required>
+        </div>
+      </div>
+      <button type="button" id="addExperience">Add More</button>
+      <button type="submit">Submit</button>
+    </form>
+
+
+
+
   <script>
     let check = document.getElementById('checker');
     let texter = document.getElementById('texter');
@@ -108,6 +127,30 @@
       // Toggle the visibility of the container using plain JavaScript
       container.style.display = (container.style.display === 'none') ? 'block' : 'none';
     }
+//add exp
+document.addEventListener("DOMContentLoaded", function() {
+  const addExperienceBtn = document.getElementById('addExperience');
+  const experienceInputs = document.getElementById('experienceInputs');
+
+  let experienceCount = 1;
+
+  addExperienceBtn.addEventListener('click', function() {
+    experienceCount++;
+
+    const newExperience = document.createElement('div');
+    newExperience.classList.add('experience');
+    newExperience.innerHTML = `
+      <label for="jobTitle${experienceCount}">Job Title:</label>
+      <input type="text" name="jobTitle[]" id="jobTitle${experienceCount}" required>
+      <label for="companyName${experienceCount}">Company Name:</label>
+      <input type="text" name="companyName[]" id="companyName${experienceCount}" required>
+      <label for="yearsWorked${experienceCount}">Years Worked:</label>
+      <input type="text" name="yearsWorked[]" id="yearsWorked${experienceCount}" required>
+    `;
+
+    experienceInputs.appendChild(newExperience);
+  });
+});
 
   </script>
 </body>

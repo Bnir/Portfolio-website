@@ -13,6 +13,7 @@ import passport from "passport";
 import { Strategy as LocalStrategy } from 'passport-local';
 import RedisStore from 'connect-redis';
 
+
 // import connectMongoDBSession from "connect-mongodb-session";
 
 // Destructure the named export
@@ -179,26 +180,19 @@ const BasicSchema = new Schema({
 const Basic = mongoose.model("BasicInfo",BasicSchema)
 
 
-
 app.post("/addbasic", upload.single('files'), async (req, res) => {
+    var email=sessionStorage.getItem('useremail')
+    console.log(email);
     const { title, name, about, hello } = req.body;
     const imageBuffer = req.file.buffer;
-    
-    // const user = await Registration.findOne({ email:user_email });
-
-    // if (user) {
-    //   // Update associated data for the user
-    //   user.associatedData = newData;
-
-    //   // Save the updated user
-    //   await user.save();
-
-    const userinfo = new Basic({
+ const userinfo = new Basic({
         name: name,
         title: title,
         about: about,
         image: { data: imageBuffer, contentType: req.file.mimetype }
     })
+
+
     userinfo.save()
     res.redirect("/template")
 
@@ -363,6 +357,7 @@ app.post('/login', async (req, res) => {
       const redirectTo = req.session.returnTo || '/';
       delete req.session.returnTo; // Clear the stored URL
       res.redirect(redirectTo);
+      sessionStorage.setItem('useremail',email)
     } else {
       res.status(401).send('Invalid credentials');
     }
