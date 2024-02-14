@@ -11,7 +11,7 @@ import session from 'express-session';
 import multer from "multer";
 import passport from "passport";
 import { Strategy as LocalStrategy } from 'passport-local';
-import RedisStore from 'connect-redis';
+
 
 
 // import connectMongoDBSession from "connect-mongodb-session";
@@ -68,7 +68,7 @@ app.use(passport.session());
 // }));
 
 
-mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.suqnipw.mongodb.net/LoginRegDB`)
+mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.suqnipw.mongodb.net/?retryWrites=true&w=majority`)
 // Assuming you have already set up your Express app and session middleware
 // ...
 
