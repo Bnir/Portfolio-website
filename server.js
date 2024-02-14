@@ -384,16 +384,18 @@ app.post('/login', async (req, res) => {
 
 
 
-// app.post('/logout', (req, res) => {
-//   req.session.destroy((err) => {
-//     if (err) {
-//       res.status(500).send('Error logging out');
-//     } else {
-//       res.clearCookie('connect.sid');
-//       res.status(200).send('Logout successful');
-//     }
-//   });
-// });
+app.post('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      res.status(500).send('Error logging out');
+    } else {
+      res.clearCookie('connect.sid');
+      res.status(200).send('Logout successful');
+    }
+  });
+});
+
+
 
 
 
