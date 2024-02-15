@@ -27,8 +27,8 @@ const password = process.env.MONGODB_PASSWORD;
 const app = express() ;
 // const MongoDBStoreSession = MongoDBStore(session);
 
-const storage = multer.memoryStorage(); // Save the file in memory as a Buffer
-const upload = multer({ storage: storage });
+// const storage = multer.memoryStorage(); // Save the file in memory as a Buffer
+// const upload = multer({ storage: storage });
 const port =process.env.PORT || 5000;
 app.use(express.static('public'));
 app.use(express.urlencoded({extended:true}))
