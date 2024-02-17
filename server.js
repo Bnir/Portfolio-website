@@ -603,13 +603,12 @@ app.get("/p1",requireLogin,async (req,res)=>{
     let skillArray=[]
     for (let index = 1; index <= 6; index++) {
       let skill = {};
-      var skill_num=skills.`skill${index}`.skill_name
-      if(skill_num){
+      var skill_num = skills[`skill${index}`].skill_name;
+      if (skill_num) {
         console.log("works bitch");
-      }else{
+      } else {
         console.log('fuck off');
       }
-      
     }
     
   //   const skillArray = [
