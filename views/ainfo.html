@@ -4,51 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Input Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: hsl(219, 43%, 17%);
+            background-image: radial-gradient(
+              650px circle at 0% 0%,
+              hsl(218, 41%, 35%) 15%,
+              hsl(218, 41%, 30%) 35%,
+              hsl(218, 41%, 20%) 75%,
+              hsl(218, 41%, 19%) 80%,
+              transparent 100%
+            ),
+            radial-gradient(
+              1250px circle at 100% 100%,
+              hsl(218, 41%, 45%) 15%,
+              hsl(218, 41%, 30%) 35%,
+              hsl(218, 41%, 20%) 75%,
+              hsl(218, 41%, 19%) 80%,
+              transparent 100%
+            );
+        }
+
+        .custom-form {
+            width: 60%;
+        }
+    </style>
 </head>
 <body>
-    <h1>Data Input Form</h1>
-    <form action="/addbasic" method="POST" enctype="multipart/form-data" id="dataForm">
-        <label for="title">Title:</label><br>
-        <input type="text" id="title" name="title" required><br><br>
+    <section class="text-center">
+        <div class="container-lg">
+            <div class="card mx-auto mt-5 shadow custom-form">
+                <div class="card-body px-md-5 align-left">
+                    <h1>Data Input Form</h1>
+                    <form action="/addbasic" method="POST" enctype="multipart/form-data" id="dataForm">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title:</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="about" class="form-label">About:</label>
+                            <textarea class="form-control" id="about" name="about" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Image:</label>
+                            <input type="file" class="form-control" id="image" name="image">
+                        </div>
 
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
+                        <!-- Skills -->
+                        <div id="skillsContainer">
+                            <label for="skill1_name" class="form-label">Skill 1 Name:</label><br>
+                            <input type="text" class="form-control" id="skill1_name" name="skill1_name" required><br>
+                            <label for="skill1_info" class="form-label">Skill 1 Info:</label><br>
+                            <input type="text" class="form-control" id="skill1_info" name="skill1_info" required><br>
+                        </div>
+                        <button type="button" class="btn btn-primary mt-3" onclick="addFields('skillsContainer', 'Skill')">Add Skill</button><br><br>
 
-        <label for="about">About:</label><br>
-        <textarea id="about" name="about" required></textarea><br><br>
+                        <!-- Projects -->
+                        <div id="projectsContainer">
+                            <label for="project1_name" class="form-label">Project 1 Name:</label><br>
+                            <input type="text" class="form-control" id="project1_name" name="project1_name" required><br>
+                            <label for="project1_info" class="form-label">Project 1 Info:</label><br>
+                            <input type="text" class="form-control" id="project1_info" name="project1_info" required><br>
+                        </div>
+                        <button type="button" class="btn btn-primary mt-3" onclick="addFields('projectsContainer', 'Project')">Add Project</button><br><br>
 
-        <label for="image">Image:</label><br>
-        <input type="file" id="image" name="image"><br><br>
+                        <!-- Experiences -->
+                        <div id="experiencesContainer">
+                            <label for="exp1_name" class="form-label">Experience 1 Name:</label><br>
+                            <input type="text" class="form-control" id="exp1_name" name="exp1_name" required><br>
+                            <label for="exp1_info" class="form-label">Experience 1 Info:</label><br>
+                            <input type="text" class="form-control" id="exp1_info" name="exp1_info" required><br>
+                        </div>
+                        <button type="button" class="btn btn-primary mt-3" onclick="addFields('experiencesContainer', 'Experience')">Add Experience</button><br><br>
 
-        <!-- Skills -->
-        <div id="skillsContainer">
-            <label for="skill1_name">Skill 1 Name:</label><br>
-            <input type="text" id="skill1_name" name="skill1_name" required><br>
-            <label for="skill1_info">Skill 1 Info:</label><br>
-            <input type="text" id="skill1_info" name="skill1_info" required><br><br>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <button type="button" onclick="addFields('skillsContainer', 'Skill')">Add Skill</button><br><br>
-
-        <!-- Projects -->
-        <div id="projectsContainer">
-            <label for="project1_name">Project 1 Name:</label><br>
-            <input type="text" id="project1_name" name="project1_name" required><br>
-            <label for="project1_info">Project 1 Info:</label><br>
-            <input type="text" id="project1_info" name="project1_info" required><br><br>
-        </div>
-        <button type="button" onclick="addFields('projectsContainer', 'Project')">Add Project</button><br><br>
-
-        <!-- Experiences -->
-        <div id="experiencesContainer">
-            <label for="exp1_name">Experience 1 Name:</label><br>
-            <input type="text" id="exp1_name" name="exp1_name" required><br>
-            <label for="exp1_info">Experience 1 Info:</label><br>
-            <input type="text" id="exp1_info" name="exp1_info" required><br><br>
-        </div>
-        <button type="button" onclick="addFields('experiencesContainer', 'Experience')">Add Experience</button><br><br>
-
-        <button type="submit">Submit</button>
-    </form>
+    </section>
 
     <script>
         function addFields(containerId, labelPrefix) {
@@ -71,6 +110,7 @@
 
             const newNameInput = document.createElement('input');
             newNameInput.setAttribute('type', 'text');
+            newNameInput.setAttribute('class', 'form-control');
             newNameInput.setAttribute('id', `${labelPrefix.toLowerCase()}${index}_name`);
             newNameInput.setAttribute('name', `${labelPrefix.toLowerCase()}${index}_name`);
             newNameInput.setAttribute('required', 'required');
@@ -85,6 +125,7 @@
 
             const newInfoInput = document.createElement('input');
             newInfoInput.setAttribute('type', 'text');
+            newInfoInput.setAttribute('class', 'form-control');
             newInfoInput.setAttribute('id', `${labelPrefix.toLowerCase()}${index}_info`);
             newInfoInput.setAttribute('name', `${labelPrefix.toLowerCase()}${index}_info`);
             newInfoInput.setAttribute('required', 'required');
@@ -94,4 +135,3 @@
     </script>
 </body>
 </html>
-
