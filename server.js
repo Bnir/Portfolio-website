@@ -135,6 +135,8 @@ app.get("/addinfo",requireLogin,(req,res)=>{
     res.sendFile(__dirname + "/views/addinfo_2.html")
 })
 
+
+
 //skills inner scehma
 const skillSchema = new Schema({
   skill_name: String,
@@ -205,12 +207,34 @@ const BasicSchema = new Schema({
 })
 const Basic = mongoose.model("Data_STORAGE",BasicSchema)
 
-app.post("/addbasic", upload.single('files'), async (req, res) => {
+app.post("/addbasic", upload.single('image'), async (req, res) => {
     // var email=sessionStorage.getItem('useremail')
-    // console.log(email);
+    console.log(req.body);
     const email=req.session.email
-    const { title, name, about,skill,project,exp } = req.body;
+    const { title, name, about,skill1_name,skill1_info,
+      skill2_name,skill2_info,
+      skill3_name,skill3_info,
+      skill4_name,skill4_info,
+      skill5_name,skill5_info,
+      skill6_name,skill6_info,
+      project1_info,project1_name,
+      project2_info,project2_name,
+      project3_info,project3_name,
+      project4_info,project4_name,
+      project5_info,project5_name,
+      project6_info,project6_name,
+      exp1_name,exp1_info,
+      exp2_name,exp2_info, 
+      exp3_name,exp3_info,
+      exp4_name,exp4_info,
+      exp5_name,exp5_info,
+      exp6_name,exp6_info
+      } = req.body;
+     
+
+
     const imageBuffer = req.file.buffer;
+
  const userinfo = new Basic({
         email:email,
         name: name,
@@ -224,23 +248,23 @@ app.post("/addbasic", upload.single('files'), async (req, res) => {
           },
           skill2: {
             skill_name: skill2_name,
-            skill_info: skill1_info
+            skill_info: skill2_info
           },
           skill3: {
             skill_name: skill3_name,
-            skill_info: skill1_info
+            skill_info: skill3_info
           },
           skill4: {
             skill_name: skill4_name,
-            skill_info: skill1_info
+            skill_info: skill4_info
           },
           skill5: {
-            skill_name: skill4_name,
-            skill_info: skill1_info
+            skill_name: skill5_name,
+            skill_info: skill5_info
           },
           skill6: {
-            skill_name: skill4_name,
-            skill_info: skill1_info
+            skill_name: skill6_name,
+            skill_info: skill6_info
           }},
         projects:
         {
