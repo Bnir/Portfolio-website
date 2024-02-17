@@ -122,21 +122,6 @@ passport.serializeUser((user, done) => {
 app.get('/',(req,res)=>{
     res.render('index.ejs')
 })
-app.get("/p1",requireLogin,(req,res)=>{
-    res.render("portfolio-1/p-1index.ejs",{
-        title:"Portfolio",
-        name: "Mahesh DAlle",
-        skillarray:["mike","lassun"]
-
-    })
-})
-app.get("/p2",requireLogin,(req,res)=>{
-    res.render("portfolio-2/p-2index.ejs")
-})
-
-app.get("/p3",requireLogin,(req,res)=>{
-    res.render("portfolio-3/p-3index.ejs")
-})  
 
 
 app.get("/addinfo",requireLogin,(req,res)=>{
@@ -147,6 +132,11 @@ app.get("/addinfo",requireLogin,(req,res)=>{
 
 
 const BasicSchema = new Schema({
+    email:{
+      type: String,
+      required: true,
+
+    },
     title: {
         type: String,
         required: true,
@@ -178,20 +168,23 @@ const BasicSchema = new Schema({
 
     
 })
-const Basic = mongoose.model("BasicInfo",BasicSchema)
-
+   const Basic = mongoose.model("Data_STORAGE",BasicSchema)
 
 app.post("/addbasic", upload.single('files'), async (req, res) => {
     // var email=sessionStorage.getItem('useremail')
     // console.log(email);
-    
-    const { title, name, about, hello } = req.body;
+    const email=req.session.email
+    const { title, name, about,skill,project,exp } = req.body;
     const imageBuffer = req.file.buffer;
  const userinfo = new Basic({
+        email:email,
         name: name,
         title: title,
         about: about,
-        image: { data: imageBuffer, contentType: req.file.mimetype }
+        image: { data: imageBuffer, contentType: req.file.mimetype},
+        skills:skill,
+        projects:project,
+        experience:exp
     })
 
 
@@ -204,6 +197,18 @@ app.post("/addbasic", upload.single('files'), async (req, res) => {
 app.get("/template",(req,res)=>{
     res.sendFile(__dirname+"/views/templpage.html")
 })
+
+
+
+
+
+
+
+
+
+
+
+
 
 //
 // var popupS = require('popups');
@@ -424,5 +429,23 @@ app.post('/logout', (req, res) => {
 
 
 
+
+app.get("/p1",requireLogin,(req,res)=>{
+  const user_email=req.session.email
+  console.log(Basic.name);
+  res.render("portfolio-1/p-1index.ejs",{
+      title:"Portfolio",
+      name: "Mahesh DAlle",
+      skillarray:["mike","lassun"]
+
+  })
+})
+app.get("/p2",requireLogin,(req,res)=>{
+  res.render("portfolio-2/p-2index.ejs")
+})
+
+app.get("/p3",requireLogin,(req,res)=>{
+  res.render("portfolio-3/p-3index.ejs")
+})  
 
   
