@@ -13,9 +13,13 @@
 <a style="color: white;" href="/p1">p1</a>
 <a href="/p3" style="color: white;">p3</a> 
         <div class="buttons">
+          <% if (locals.loggedin) { %>
+            <form action="/logout" method="get" ><button class="log" >LogOut</button> </form>
+           
+          <% }else{ %>
             <form action="/login" method="get" ><button class="log" >Login</button> </form>
             <form action="/register" method="get"> <button class="reg">Register</button></form>
-            
+            <%}%>
         </div>
     </div>
 </nav>

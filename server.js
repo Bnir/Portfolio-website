@@ -49,6 +49,7 @@ app.use(session({
   secret: 'halwaaaabhengan102001200120001',
   resave: false,
   saveUninitialized: true,
+  cookie: { secure: true, maxAge: null }
 }));
 
 
@@ -120,7 +121,11 @@ passport.serializeUser((user, done) => {
 
 
 app.get('/',(req,res)=>{
-    res.render('index.ejs')
+  if (req.session.email){
+    res.render('index.ejs',{loggedin:true})
+  }
+  else{  
+    res.render('index.ejs',{loggedin:false}) } 
 })
 
 
@@ -154,7 +159,7 @@ const BasicSchema = new Schema({
         contentType: String
     },
     skills:{
-        type:[String],
+        type:Object,
         requred:true
     },
     projects:{
@@ -415,13 +420,13 @@ app.post('/login', async (req, res) => {
 
 
 
-app.post('/logout', (req, res) => {
+app.get('/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       res.status(500).send('Error logging out');
     } else {
       res.clearCookie('connect.sid');
-      res.status(200).send('Logout successful');
+      res.redirect("/");
     }
   });
 });
@@ -435,17 +440,20 @@ app.get("/p1",requireLogin,async (req,res)=>{
   const data= await Basic.findOne({email:user_email})
   if(data){
     console.log(data);
+    const TITLE =data.title;
+    const NAME=data.name;  
+    await res.render("portfolio-1/p-1index.ejs",{
+          title:TITLE,
+          name: NAME,
+          skillarray:["mike","lassun"]
+
+      })
 
   }else{
     console.log("data not found");
   }
 
-  await res.render("portfolio-1/p-1index.ejs",{
-      title:"Portfolio",
-      name: "Mahesh DAlle",
-      skillarray:["mike","lassun"]
-
-  })
+  
 })
 app.get("/p2",requireLogin,(req,res)=>{
   res.render("portfolio-2/p-2index.ejs")
