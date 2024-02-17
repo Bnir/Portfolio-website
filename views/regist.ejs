@@ -105,11 +105,12 @@
               <label class="form-label" for="form3Example4">Password</label>
               <input type="password" id="form3Example4"  name="password" class="form-control" />
             </div>
-            <span style=" display: flex;align-items: center;width: 100%; color: red;"><p>
+            <span style=" display: flex;align-items: center;width: 100%; color: red;justify-content: center;"><p>
               
               <% if (locals.alreadyexist) {%>
-                alreadyexist
-                <% }else {}  %>
+                alreadyexist <br><br>
+                <a href="/login" class="btn btn-primary btn-block mb-4">Login</a> 
+                <% }else { }%>
               </p></span>
             <button type="submit" class="btn btn-primary btn-block mb-4">
               Register
