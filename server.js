@@ -132,7 +132,7 @@ app.get('/',(req,res)=>{
 app.get("/addinfo",requireLogin,(req,res)=>{
     const userEmail = req.session.email;
     console.log(userEmail);
-    res.sendFile(__dirname + "/views/addinfo.html")
+    res.sendFile(__dirname + "/views/addinfo_2.html")
 })
 
 //skills inner scehma
