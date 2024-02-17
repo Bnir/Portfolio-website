@@ -168,7 +168,7 @@ const BasicSchema = new Schema({
 
     
 })
-   const Basic = mongoose.model("Data_STORAGE",BasicSchema)
+const Basic = mongoose.model("Data_STORAGE",BasicSchema)
 
 app.post("/addbasic", upload.single('files'), async (req, res) => {
     // var email=sessionStorage.getItem('useremail')
@@ -430,10 +430,17 @@ app.post('/logout', (req, res) => {
 
 
 
-app.get("/p1",requireLogin,(req,res)=>{
+app.get("/p1",requireLogin,async (req,res)=>{
   const user_email=req.session.email
-  console.log(Basic.name);
-  res.render("portfolio-1/p-1index.ejs",{
+  const data= await Basic.findOne({email:user_email})
+  if(data){
+    console.log(data);
+
+  }else{
+    console.log("data not found");
+  }
+
+  await res.render("portfolio-1/p-1index.ejs",{
       title:"Portfolio",
       name: "Mahesh DAlle",
       skillarray:["mike","lassun"]
