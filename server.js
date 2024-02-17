@@ -605,7 +605,7 @@ app.get("/p1",requireLogin,async (req,res)=>{
       let skill = {};
       var skill_num = skills[`skill${index}`].skill_name;
       if (skill_num) {
-        console.log("works bitch");
+        console.log("workss bitch");
       } else {
         console.log('fuck off');
       }
