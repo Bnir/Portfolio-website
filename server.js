@@ -23,7 +23,7 @@ const { json } = pkg;
 dotenv.config();
 const username = process.env.MONGODB_USERNAME;
 const password = process.env.MONGODB_PASSWORD;
-mongoose.connect(`mongodb+srv://${username}:${password}@portfoliogen.emzz7tb.mongodb.net/?retryWrites=true&w=majority`)
+mongoose.connect(`mongodb+srv://${username}:${password}@portfoliogen.emzz7tb.mongodb.net/portfolio`)
 const app = express() ;
 // const MongoDBStoreSession = MongoDBStore(session);
 
@@ -182,7 +182,7 @@ const Basic = mongoose.model("BasicInfo",BasicSchema)
 
 app.post("/addbasic", upload.single('files'), async (req, res) => {
     // var email=sessionStorage.getItem('useremail')
-    console.log(email);
+    // console.log(email);
     const { title, name, about, hello } = req.body;
     const imageBuffer = req.file.buffer;
  const userinfo = new Basic({
