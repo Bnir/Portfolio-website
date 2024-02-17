@@ -11,8 +11,7 @@ import session from 'express-session';
 import multer from "multer";
 import passport from "passport";
 import { Strategy as LocalStrategy } from 'passport-local';
-import redis from 'redis';
-import connectRedis from 'connect-redis';
+
 
 
 
@@ -42,8 +41,7 @@ app.use(express.json())
 //   uri: monguri,
 //   collection: 'sessions',
 // });
-const RedisStore = connectRedis(session);
-const redisClient = redis.createClient();
+
 
 app.use(session({ secret: 'halwaaaabhengan102001200120001', resave: true, saveUninitialized: true }));
 app.set('view engine', 'ejs');
