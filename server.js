@@ -23,7 +23,7 @@ const { json } = pkg;
 dotenv.config();
 const username = process.env.MONGODB_USERNAME;
 const password = process.env.MONGODB_PASSWORD;
-
+mongoose.connect(`mongodb+srv://${username}:${password}@suckdeeznuts.8qvqsne.mongodb.net/PortfolioSite`)
 const app = express() ;
 // const MongoDBStoreSession = MongoDBStore(session);
 
@@ -68,7 +68,7 @@ app.use(passport.session());
 // }));
 
 
-mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.suqnipw.mongodb.net/?retryWrites=true&w=majority`)
+
 // Assuming you have already set up your Express app and session middleware
 // ...
 
@@ -111,7 +111,7 @@ passport.serializeUser((user, done) => {
   
   passport.deserializeUser(async (email, done) => {
     try {
-      const user = await Registration.findOne({ email:email });
+      // const user = await Registration.findOne({ email:email });
       done(null, user);
     } catch (error) {
       done(error, null);
@@ -257,7 +257,7 @@ app.post("/register",async (req,res)=>{
     try {
         
         const {name,email,password,associatedData} = req.body
-        const exist = await Registration.findOne({ email:email })
+        // const exist = await Registration.findOne({ email:email })
 
         const hashpass= await bcrypt.hash(password,10)
         if (!exist)  {const user = new Registration ({

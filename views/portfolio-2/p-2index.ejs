@@ -21,7 +21,12 @@
     <div class="cont">
         <div class="leftside column1">
             <div class="details">
-                <h1>Manish Pandey</h1>
+                <h1><% if (locals.user_name) { %>
+                    user_name 
+                    <% } else { %>
+                     Manish Pandey
+                    <% } %></h1>
+
                 <h2>Lead Engineer at Microsoft</h2>
                 <p>I build pixel-perfect, engaging, and accessible digital
                     experiences.</p>
