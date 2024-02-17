@@ -11,6 +11,8 @@ import session from 'express-session';
 import multer from "multer";
 import passport from "passport";
 import { Strategy as LocalStrategy } from 'passport-local';
+import redis from 'redis';
+import connectRedis from 'connect-redis';
 
 
 
@@ -24,14 +26,14 @@ dotenv.config();
 const username = process.env.MONGODB_USERNAME;
 const password = process.env.MONGODB_PASSWORD;
 mongoose.connect(`mongodb+srv://${username}:${password}@portfoliogen.emzz7tb.mongodb.net/portfolio`)
-const app = express() ;
+const app = express();
 // const MongoDBStoreSession = MongoDBStore(session);
 
 const storage = multer.memoryStorage(); // Save the file in memory as a Buffer
 const upload = multer({ storage: storage });
-const port =process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 app.use(express.static('public'));
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({ extended: true }))
 const __dirname = dirname(fileURLToPath(import.meta.url))
 app.use(express.json())
 
@@ -40,16 +42,15 @@ app.use(express.json())
 //   uri: monguri,
 //   collection: 'sessions',
 // });
+const RedisStore = connectRedis(session);
+const redisClient = redis.createClient();
 
 app.use(session({ secret: 'halwaaaabhengan102001200120001', resave: true, saveUninitialized: true }));
 app.set('view engine', 'ejs');
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(session({
-  secret: 'halwaaaabhengan102001200120001',
-  resave: false,
-  saveUninitialized: true,
-}));
+
+
 
 
 
@@ -73,129 +74,129 @@ app.use(session({
 
 // Middleware to check if the user is logged in
 const requireLogin = (req, res, next) => {
-    if (req.session.email) {
-      // User is logged in, proceed to the next middleware or route handler
-      next();
-    } else {
-      // User is not logged in, redirect to the login page or send an unauthorized response
-      res.redirect('/login'); // You can replace '/login' with the path to your login page
-      // Alternatively, you can send an unauthorized response like res.status(401).send('Unauthorized');
-    }
-  };
-  //passport config
-  
+  if (req.session.email) {
+    // User is logged in, proceed to the next middleware or route handler
+    next();
+  } else {
+    // User is not logged in, redirect to the login page or send an unauthorized response
+    res.redirect('/login'); // You can replace '/login' with the path to your login page
+    // Alternatively, you can send an unauthorized response like res.status(401).send('Unauthorized');
+  }
+};
+//passport config
+
 // Passport configuration
 passport.use(new LocalStrategy({
-    usernameField: 'email', // Use 'email' as the username field
-    passwordField: 'password',
-  }, async (email, password, done) => {
-    try {
-      const user = await Registration.findOne({ email:email });
-      console.log(user.email);
-      if (!user || !user.verifyPassword(password)) {
-        return done(null, false, { message: 'Invalid email or password' });
-      }
-  
-      return done(null, user);
-    } catch (error) {
-      return done(error);
+  usernameField: 'email', // Use 'email' as the username field
+  passwordField: 'password',
+}, async (email, password, done) => {
+  try {
+    const user = await Registration.findOne({ email: email });
+    console.log(user.email);
+    if (!user || !user.verifyPassword(password)) {
+      return done(null, false, { message: 'Invalid email or password' });
     }
-  }));
-  
+
+    return done(null, user);
+  } catch (error) {
+    return done(error);
+  }
+}));
+
 //for passport to authenticate and set email as unique id
 
 passport.serializeUser((user, done) => {
-    done(null, user.email); // Use email as the unique identifier
-  });
-  
-  passport.deserializeUser(async (email, done) => {
-    try {
-      // const user = await Registration.findOne({ email:email });
-      done(null, user);
-    } catch (error) {
-      done(error, null);
-    }
-  });
+  done(null, user.email); // Use email as the unique identifier
+});
+
+passport.deserializeUser(async (email, done) => {
+  try {
+    // const user = await Registration.findOne({ email:email });
+    done(null, user);
+  } catch (error) {
+    done(error, null);
+  }
+});
 
 
 
-app.get('/',(req,res)=>{
-    res.render('index.ejs')
+app.get('/', (req, res) => {
+  res.render('index.ejs')
 })
 
 
-app.get("/addinfo",requireLogin,(req,res)=>{
-    const userEmail = req.session.email;
-    console.log(userEmail);
-    res.sendFile(__dirname + "/views/addinfo.html")
+app.get("/addinfo", requireLogin, (req, res) => {
+  const userEmail = req.session.email;
+  console.log(userEmail);
+  res.sendFile(__dirname + "/views/addinfo.html")
 })
 
 
 const BasicSchema = new Schema({
-    email:{
-      type: String,
-      required: true,
+  email: {
+    type: String,
+    required: true,
 
-    },
-    title: {
-        type: String,
-        required: true,
-    },
-    name: {
-        type: String,
-        required: true,
-    },
-    about: {
-        type: String,
-        required: true,
-    },
-    image: {
-        data: Buffer,
-        contentType: String
-    },
-    skills:{
-        type:[String],
-        requred:true
-    },
-    projects:{
-        type:[String],
-        requred:true
-    },
-    experience:{
-        type:[String],
-        requred:true
-    }
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  about: {
+    type: String,
+    required: true,
+  },
+  image: {
+    data: Buffer,
+    contentType: String
+  },
+  skills: {
+    type: [String],
+    requred: true
+  },
+  projects: {
+    type: [String],
+    requred: true
+  },
+  experience: {
+    type: [String],
+    requred: true
+  }
 
-    
+
 })
-const Basic = mongoose.model("Data_STORAGE",BasicSchema)
+const Basic = mongoose.model("Data_STORAGE", BasicSchema)
 
 app.post("/addbasic", upload.single('files'), async (req, res) => {
-    // var email=sessionStorage.getItem('useremail')
-    // console.log(email);
-    const email=req.session.email
-    const { title, name, about,skill,project,exp } = req.body;
-    const imageBuffer = req.file.buffer;
- const userinfo = new Basic({
-        email:email,
-        name: name,
-        title: title,
-        about: about,
-        image: { data: imageBuffer, contentType: req.file.mimetype},
-        skills:skill,
-        projects:project,
-        experience:exp
-    })
+  // var email=sessionStorage.getItem('useremail')
+  // console.log(email);
+  const email = req.session.email
+  const { title, name, about, skill, project, exp } = req.body;
+  const imageBuffer = req.file.buffer;
+  const userinfo = new Basic({
+    email: email,
+    name: name,
+    title: title,
+    about: about,
+    image: { data: imageBuffer, contentType: req.file.mimetype },
+    skills: skill,
+    projects: project,
+    experience: exp
+  })
 
 
-    await userinfo.save()
-    res.redirect("/template")
+  await userinfo.save()
+  res.redirect("/template")
 
 })
 
 
-app.get("/template",(req,res)=>{
-    res.sendFile(__dirname+"/views/templpage.html")
+app.get("/template", (req, res) => {
+  res.sendFile(__dirname + "/views/templpage.html")
 })
 
 
@@ -212,7 +213,7 @@ app.get("/template",(req,res)=>{
 
 //
 // var popupS = require('popups');
- 
+
 // popupS.alert({
 //     content: 'Hello World!'
 // });
@@ -241,65 +242,67 @@ app.get("/template",(req,res)=>{
 // const fruit1= new Fruit({name:"mahesh" ,rating:9 })
 // fruit1.save()
 
-const regscema=new mongoose.Schema({
-    name:String,
-    email:String,
-    password:String,
-    associatedData:Object
+const regscema = new mongoose.Schema({
+  name: String,
+  email: String,
+  password: String,
+  associatedData: Object
 })
 
-const Registration = mongoose.model("Regsitration",regscema)
+const Registration = mongoose.model("Regsitration", regscema)
 
-app.get("/success",(req,res)=>{
-    res.sendFile(__dirname + "/views/success.html")
+app.get("/success", (req, res) => {
+  res.sendFile(__dirname + "/views/success.html")
 })
-app.get("/error",(req,res)=>{
-    res.sendFile(__dirname + "/views/error.html")
+app.get("/error", (req, res) => {
+  res.sendFile(__dirname + "/views/error.html")
 })
-app.get("/register",(req,res)=>{
-    res.render("regist.ejs")
+app.get("/register", (req, res) => {
+  res.render("regist.ejs")
 })
 
-app.post("/register",async (req,res)=>{ 
-    try {
-        
-        const {name,email,password,associatedData} = req.body
-        const exist = await Registration.findOne({ email:email })
+app.post("/register", async (req, res) => {
+  try {
 
-        const hashpass= await bcrypt.hash(password,10)
-        if (!exist)  {const user = new Registration ({
-                name:name,
-                email:email,
-                password: hashpass,
-                associatedData:associatedData
-                })
-                await user.save()
-            
-                res.redirect("/success")}
-                
-                
-        else {
-            await res.render("regist.ejs",{alreadyexist:true})
+    const { name, email, password, associatedData } = req.body
+    const exist = await Registration.findOne({ email: email })
 
-        }
-         
-        
-        
-    } catch (error) {
-        res.redirect("/error")
-        console.log(error);
+    const hashpass = await bcrypt.hash(password, 10)
+    if (!exist) {
+      const user = new Registration({
+        name: name,
+        email: email,
+        password: hashpass,
+        associatedData: associatedData
+      })
+      await user.save()
+
+      res.redirect("/success")
     }
-})
-  
 
 
-app.listen(port,(err)=>{
-    if (err) {
-        console.log('Error sir')
-    }else{
-        console.log(`Listening at port ${port}`)
+    else {
+      await res.render("regist.ejs", { alreadyexist: true })
+
     }
-    
+
+
+
+  } catch (error) {
+    res.redirect("/error")
+    console.log(error);
+  }
+})
+
+
+
+app.listen(port, (err) => {
+  if (err) {
+    console.log('Error sir')
+  } else {
+    console.log(`Listening at port ${port}`)
+  }
+
 })
 
 
@@ -308,8 +311,8 @@ app.listen(port,(err)=>{
 
 //login part
 
-app.get("/login",(req,res)=>{
-    res.render("login.ejs")
+app.get("/login", (req, res) => {
+  res.render("login.ejs")
 })
 
 
@@ -332,7 +335,7 @@ app.get("/login",(req,res)=>{
 //   }
 // });
 
-  
+
 // const {name,email,password} = req.body
 // const exist = await Registration.findOne({ email:email })
 // console.log(exist+"hitaa");
@@ -343,13 +346,13 @@ app.get("/login",(req,res)=>{
 //         password: hashpass})
 //         await user.save()
 //         res.redirect("/success")}
-        
-        
+
+
 // else {
 //     await res.render("regist.ejs",{alreadyexist:true})
 
 // }
- 
+
 
 // app.post('/login', async (req, res) => {
 //   try {
@@ -378,7 +381,7 @@ app.post('/login', async (req, res) => {
     const lurl = req.get('Referer') || '/';
     const { email, password } = req.body; // You're not using username here, so remove it from destructuring
     const user = await Registration.findOne({ email });
-    
+
 
     if (user && (await bcrypt.compare(password, user.password))) {
       // req.session.userId = user._id;
@@ -401,7 +404,7 @@ app.post('/login', async (req, res) => {
 //     try {
 //       const { username, password } = req.body;
 //       const user = await User.findOne({ username });
-  
+
 //       if (user && (await bcrypt.compare(password, user.password))) {
 //         req.session.userId = user._id;
 //         res.status(200).send('Login successful');
@@ -430,29 +433,28 @@ app.post('/logout', (req, res) => {
 
 
 
-app.get("/p1",requireLogin,async (req,res)=>{
-  const user_email=req.session.email
-  const data= await Basic.findOne({email:user_email})
-  if(data){
+app.get("/p1", requireLogin, async (req, res) => {
+  const user_email = req.session.email
+  const data = await Basic.findOne({ email: user_email })
+  if (data) {
     console.log(data);
 
-  }else{
+  } else {
     console.log("data not found");
   }
 
-  await res.render("portfolio-1/p-1index.ejs",{
-      title:"Portfolio",
-      name: "Mahesh DAlle",
-      skillarray:["mike","lassun"]
+  await res.render("portfolio-1/p-1index.ejs", {
+    title: "Portfolio",
+    name: "Mahesh DAlle",
+    skillarray: ["mike", "lassun"]
 
   })
 })
-app.get("/p2",requireLogin,(req,res)=>{
+app.get("/p2", requireLogin, (req, res) => {
   res.render("portfolio-2/p-2index.ejs")
 })
 
-app.get("/p3",requireLogin,(req,res)=>{
+app.get("/p3", requireLogin, (req, res) => {
   res.render("portfolio-3/p-3index.ejs")
-})  
+})
 
-  
