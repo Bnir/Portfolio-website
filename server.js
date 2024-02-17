@@ -565,17 +565,73 @@ app.get('/logout', (req, res) => {
 app.get("/p1",requireLogin,async (req,res)=>{
   const user_email=req.session.email
   const data= await Basic.findOne({email:user_email})
-  if(data){
-    console.log(data);
-    const TITLE =data.title;
-    const NAME=data.name;  
-    await res.render("portfolio-1/p-1index.ejs",{
-          title:TITLE,
-          name: NAME,
-          skillarray:["mike","lassun"]
+  // if(data){
+  //   const email=req.session.email
+  //   const { title, name, about,skill1_name,skill1_info,
+  //     skill2_name,skill2_info,
+  //     skill3_name,skill3_info,
+  //     skill4_name,skill4_info,
+  //     skill5_name,skill5_info,
+  //     skill6_name,skill6_info,
+  //     project1_info,project1_name,
+  //     project2_info,project2_name,
+  //     project3_info,project3_name,
+  //     project4_info,project4_name,
+  //     project5_info,project5_name,
+  //     project6_info,project6_name,
+  //     exp1_name,exp1_info,
+  //     exp2_name,exp2_info, 
+  //     exp3_name,exp3_info,
+  //     exp4_name,exp4_info,
+  //     exp5_name,exp5_info,
+  //     exp6_name,exp6_info
+  //     } = req.body;
+  //   const TITLE =data.title;
+  //   const NAME=data.name;  
+  //   await res.render("portfolio-1/p-1index.ejs",{
+  //         title:TITLE,
+  //         name: NAME,
+  //         skillarray:["mike","lassun"]
 
-      })
+  //     })
+  if (data) {
+    const { title, name, about, skills,projects,experience} = data;
 
+    const TITLE = data.title;
+    const NAME = data.name;
+    const skillArray = [
+        { name: skill1_name, info: skill1_info },
+        { name: skill2_name, info: skill2_info },
+        { name: skill3_name, info: skill3_info },
+        { name: skill4_name, info: skill4_info },
+        { name: skill5_name, info: skill5_info },
+        { name: skill6_name, info: skill6_info }
+    ];
+    const projectArray = [
+      { name: project1_name, info: project1_info },
+      { name: project2_name, info: project2_info },
+      { name: project3_name, info: project3_info },
+      { name: project4_name, info: project4_info },
+      { name: project5_name, info: project5_info },
+      { name: project6_name, info: project6_info }
+  ];
+
+  const experienceArray = [
+      { name: exp1_name, info: exp1_info },
+      { name: exp2_name, info: exp2_info },
+      { name: exp3_name, info: exp3_info },
+      { name: exp4_name, info: exp4_info },
+      { name: exp5_name, info: exp5_info },
+      { name: exp6_name, info: exp6_info }
+  ];
+
+  console.log(skill1_name,name);
+    await res.render("portfolio-1/p-1index.ejs", {
+        title: title,
+        name: name,
+        skillArray: skillArray,
+        projectArray: projectArray,
+        experienceArray: experienceArray    });
   }else{
     console.log("data not found");
   }
