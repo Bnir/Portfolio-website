@@ -596,42 +596,55 @@ app.get("/p1",requireLogin,async (req,res)=>{
   //     })
   if (data) {
     const { title, name, about, skills,projects,experience} = data;
-
+    console.log(skills,projects);
     const TITLE = data.title;
     const NAME = data.name;
-    const skillArray = [
-        { name: skill1_name, info: skill1_info },
-        { name: skill2_name, info: skill2_info },
-        { name: skill3_name, info: skill3_info },
-        { name: skill4_name, info: skill4_info },
-        { name: skill5_name, info: skill5_info },
-        { name: skill6_name, info: skill6_info }
-    ];
-    const projectArray = [
-      { name: project1_name, info: project1_info },
-      { name: project2_name, info: project2_info },
-      { name: project3_name, info: project3_info },
-      { name: project4_name, info: project4_info },
-      { name: project5_name, info: project5_info },
-      { name: project6_name, info: project6_info }
-  ];
+    const skill1_name=skills.skill1.skill_name;
+    let skillArray=[]
+    for (let index = 1; index <= 6; index++) {
+      let skill = {};
+      var skill_num=skills.`skill${index}`.skill_name
+      if(skill_num){
+        console.log("works bitch");
+      }else{
+        console.log('fuck off');
+      }
+      
+    }
+    
+  //   const skillArray = [
+  //       { name: skill1_name, info: skill1_info },
+  //       { name: skill2_name, info: skill2_info },
+  //       { name: skill3_name, info: skill3_info },
+  //       { name: skill4_name, info: skill4_info },
+  //       { name: skill5_name, info: skill5_info },
+  //       { name: skill6_name, info: skill6_info }
+  //   ];
+  //   const projectArray = [
+  //     { name: project1_name, info: project1_info },
+  //     { name: project2_name, info: project2_info },
+  //     { name: project3_name, info: project3_info },
+  //     { name: project4_name, info: project4_info },
+  //     { name: project5_name, info: project5_info },
+  //     { name: project6_name, info: project6_info }
+  // ];
 
-  const experienceArray = [
-      { name: exp1_name, info: exp1_info },
-      { name: exp2_name, info: exp2_info },
-      { name: exp3_name, info: exp3_info },
-      { name: exp4_name, info: exp4_info },
-      { name: exp5_name, info: exp5_info },
-      { name: exp6_name, info: exp6_info }
-  ];
+  // const experienceArray = [
+  //     { name: exp1_name, info: exp1_info },
+  //     { name: exp2_name, info: exp2_info },
+  //     { name: exp3_name, info: exp3_info },
+  //     { name: exp4_name, info: exp4_info },
+  //     { name: exp5_name, info: exp5_info },
+  //     { name: exp6_name, info: exp6_info }
+  // ];
 
-  console.log(skill1_name,name);
+  // console.log(skill1_name,name);
     await res.render("portfolio-1/p-1index.ejs", {
         title: title,
         name: name,
-        skillArray: skillArray,
-        projectArray: projectArray,
-        experienceArray: experienceArray    });
+        skillArray: "skillArray",
+        projectArray:" projectArray",
+        experienceArray: "experienceArray"    });
   }else{
     console.log("data not found");
   }
