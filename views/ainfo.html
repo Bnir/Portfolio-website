@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Input Form</title>
+</head>
+<body>
+    <h1>Data Input Form</h1>
+    <form action="/addbasic" method="POST" enctype="multipart/form-data" id="dataForm">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="about">About:</label><br>
+        <textarea id="about" name="about" required></textarea><br><br>
+
+        <label for="image">Image:</label><br>
+        <input type="file" id="image" name="image"><br><br>
+
+        <!-- Skills -->
+        <div id="skillsContainer">
+            <label for="skill1_name">Skill 1 Name:</label><br>
+            <input type="text" id="skill1_name" name="skill1_name" required><br>
+            <label for="skill1_info">Skill 1 Info:</label><br>
+            <input type="text" id="skill1_info" name="skill1_info" required><br><br>
+        </div>
+        <button type="button" onclick="addFields('skillsContainer', 'Skill')">Add Skill</button><br><br>
+
+        <!-- Projects -->
+        <div id="projectsContainer">
+            <label for="project1_name">Project 1 Name:</label><br>
+            <input type="text" id="project1_name" name="project1_name" required><br>
+            <label for="project1_info">Project 1 Info:</label><br>
+            <input type="text" id="project1_info" name="project1_info" required><br><br>
+        </div>
+        <button type="button" onclick="addFields('projectsContainer', 'Project')">Add Project</button><br><br>
+
+        <!-- Experiences -->
+        <div id="experiencesContainer">
+            <label for="exp1_name">Experience 1 Name:</label><br>
+            <input type="text" id="exp1_name" name="exp1_name" required><br>
+            <label for="exp1_info">Experience 1 Info:</label><br>
+            <input type="text" id="exp1_info" name="exp1_info" required><br><br>
+        </div>
+        <button type="button" onclick="addFields('experiencesContainer', 'Experience')">Add Experience</button><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function addFields(containerId, labelPrefix) {
+            const container = document.getElementById(containerId);
+            const inputs = container.querySelectorAll('input[type="text"]');
+            const lastInput = inputs[inputs.length - 1];
+
+            // Get the index of the last input
+            let index = parseInt(lastInput.id.match(/\d+/)[0]);
+
+            // Increment the index to create new input IDs
+            index++;
+
+            // Create new label and input elements
+            const newLabel = document.createElement('label');
+            newLabel.setAttribute('for', `${labelPrefix.toLowerCase()}${index}_name`);
+            newLabel.textContent = `${labelPrefix} ${index} Name:`;
+            container.appendChild(newLabel);
+            container.appendChild(document.createElement('br'));
+
+            const newNameInput = document.createElement('input');
+            newNameInput.setAttribute('type', 'text');
+            newNameInput.setAttribute('id', `${labelPrefix.toLowerCase()}${index}_name`);
+            newNameInput.setAttribute('name', `${labelPrefix.toLowerCase()}${index}_name`);
+            newNameInput.setAttribute('required', 'required');
+            container.appendChild(newNameInput);
+            container.appendChild(document.createElement('br'));
+
+            const newInfoLabel = document.createElement('label');
+            newInfoLabel.setAttribute('for', `${labelPrefix.toLowerCase()}${index}_info`);
+            newInfoLabel.textContent = `${labelPrefix} ${index} Info:`;
+            container.appendChild(newInfoLabel);
+            container.appendChild(document.createElement('br'));
+
+            const newInfoInput = document.createElement('input');
+            newInfoInput.setAttribute('type', 'text');
+            newInfoInput.setAttribute('id', `${labelPrefix.toLowerCase()}${index}_info`);
+            newInfoInput.setAttribute('name', `${labelPrefix.toLowerCase()}${index}_info`);
+            newInfoInput.setAttribute('required', 'required');
+            container.appendChild(newInfoInput);
+            container.appendChild(document.createElement('br'));
+        }
+    </script>
+</body>
+</html>
+

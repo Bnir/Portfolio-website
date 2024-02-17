@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Input Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 py-10">
+    <div class="max-w-2xl mx-auto bg-white p-8 rounded shadow">
+        <h1 class="text-2xl font-bold mb-8 text-center">Data Input Form</h1>
+        <form action="/addbasic" method="POST" enctype="multipart/form-data" id="dataForm">
+            <div class="mb-6">
+                <label for="title" class="block text-sm font-bold mb-2">Title:</label>
+                <input type="text" id="title" name="title" required class="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:border-blue-500" />
+            </div>
+
+            <div class="mb-6">
+                <label for="name" class="block text-sm font-bold mb-2">Name:</label>
+                <input type="text" id="name" name="name" required class="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:border-blue-500" />
+            </div>
+
+            <div class="mb-6">
+                <label for="about" class="block text-sm font-bold mb-2">About:</label>
+                <textarea id="about" name="about" required class="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:border-blue-500"></textarea>
+            </div>
+
+            <div class="mb-6">
+                <label for="image" class="block text-sm font-bold mb-2">Image:</label>
+                <input type="file" id="image" name="image" class="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:border-blue-500" />
+            </div>
+
+            <!-- Skills -->
+            <div id="skillsContainer">
+                <h2 class="text-lg font-bold mb-2">Skills</h2>
+                <div class="mb-3">
+                    <label for="skill1_name" class="block text-sm font-bold mb-1">Skill 1 Name:</label>
+                    <input type="text" id="skill1_name" name="skill1_name" required class="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:border-blue-500" />
+                </div>
+                <div class="mb-6">
+                    <label for="skill1_info" class="block text-sm font-bold mb-1">Skill 1 Info:</label>
+                    <input type="text" id="skill1_info" name="skill1_info" required class="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:border-blue-500" />
+                </div>
+            </div>
+            <button type="button" onclick="addFields('skillsContainer', 'Skill')" class="block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Skill</button>
+
+            <!-- Projects -->
+            <div id="projectsContainer" class="mt-8">
+                <h2 class="text-lg font-bold mb-2">Projects</h2>
+                <div class="mb-3">
+                    <label for="project1_name" class="block text-sm font-bold mb-1">Project 1 Name:</label>
+                    <input type="text" id="project1_name" name="project1_name" required class="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:border-blue-500" />
+                </div>
+                <div class="mb-6">
+                    <label for="project1_info" class="block text-sm font-bold mb-1">Project 1 Info:</label>
+                    <input type="text" id="project1_info" name="project1_info" required class="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:border-blue-500" />
+                </div>
+            </div>
+            <button type="button" onclick="addFields('projectsContainer', 'Project')" class="block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Project</button>
+
+            <!-- Experiences -->
+            <div id="experiencesContainer" class="mt-8">
+                <h2 class="text-lg font-bold mb-2">Experiences</h2>
+                <div class="mb-3">
+                    <label for="exp1_name" class="block text-sm font-bold mb-1">Experience 1 Name:</label>
+                    <input type="text" id="exp1_name" name="exp1_name" required class="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:border-blue-500" />
+                </div>
+                <div class="mb-6">
+                    <label for="exp1_info" class="block text-sm font-bold mb-1">Experience 1 Info:</label>
+                    <input type="text" id="exp1_info" name="exp1_info" required class="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:border-blue-500" />
+                </div>
+            </div>
+            <button type="button" onclick="addFields('experiencesContainer', 'Experience')" class="block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Experience</button>
+
+            <button type="submit" class="block bg-green-500 text-white px-4 py-2 rounded mt-8 hover:bg-green-600">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function addFields(containerId, labelPrefix) {
+            const container = document.getElementById(containerId);
+            const inputs = container.querySelectorAll('input[type="text"]');
+            const lastInput = inputs[inputs.length - 1];
+
+            // Get the index of the last input
+            let index = parseInt(lastInput.id.match(/\d+/)[0]);
+
+            // Increment the index to create new input IDs
+            index++;
+
+            // Create new label and input elements
+            const newDiv = document.createElement('div');
+            newDiv.classList.add('mb-3');
+            container.appendChild(newDiv);
+
+            const newLabel = document.createElement('label');
+            newLabel.setAttribute('for', `${labelPrefix.toLowerCase()}${index}_name`);
+            newLabel.classList.add('block', 'text-sm', 'font-bold', 'mb-1');
+            newLabel.textContent = `${labelPrefix} ${index} Name:`;
+            newDiv.appendChild(newLabel);
+
+            const newInput = document.createElement('input');
+            newInput.setAttribute('type', 'text');
+            newInput.setAttribute('id', `${labelPrefix.toLowerCase()}${index}_name`);
+            newInput.setAttribute('name', `${labelPrefix.toLowerCase()}${index}_name`);
+            newInput.setAttribute('required', 'true');
+            newInput.classList.add('w-full', 'px-3', 'py-2', 'border', 'rounded', 'shadow-sm', 'focus:outline-none', 'focus:border-blue-500');
+            newDiv.appendChild(newInput);
+
+            const newLabelInfo = document.createElement('label');
+            newLabelInfo.setAttribute('for', `${labelPrefix.toLowerCase()}${index}_info`);
+            newLabelInfo.classList.add('block', 'text-sm', 'font-bold', 'mb-1');
+            newLabelInfo.textContent = `${labelPrefix} ${index} Info:`;
+            newDiv.appendChild(newLabelInfo);
+
+            const newInputInfo = document.createElement('input');
+            newInputInfo.setAttribute('type', 'text');
+            newInputInfo.setAttribute('id', `${labelPrefix.toLowerCase()}${index}_info`);
+            newInputInfo.setAttribute('name', `${labelPrefix.toLowerCase()}${index}_info`);
+            newInputInfo.setAttribute('required', 'true');
+            newInputInfo.classList.add('w-full', 'px-3', 'py-2', 'border', 'rounded', 'shadow-sm', 'focus:outline-none', 'focus:border-blue-500');
+            newDiv.appendChild(newInputInfo);
+        }
+    </script>
+</body>
+</html>

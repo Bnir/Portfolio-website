@@ -135,6 +135,24 @@ app.get("/addinfo",requireLogin,(req,res)=>{
     res.sendFile(__dirname + "/views/addinfo.html")
 })
 
+//skills inner scehma
+const skillSchema = new Schema({
+  skill_name: String,
+  skill_info: String
+});
+
+//projects inner schema
+const projectSchema = new Schema({
+  project_name: String,
+  project_info: String
+});
+
+//experience innner schema
+const expSchema = new Schema({
+  exp_name: String,
+  exp_info: String
+});
+
 
 const BasicSchema = new Schema({
     email:{
@@ -159,16 +177,28 @@ const BasicSchema = new Schema({
         contentType: String
     },
     skills:{
-        type:Object,
-        requred:true
+        skill1:skillSchema,
+        skill2:skillSchema,
+        skill3:skillSchema,
+        skill4:skillSchema,
+        skill5:skillSchema,
+        skill6:skillSchema
     },
     projects:{
-        type:[String],
-        requred:true
+        proj_1:projectSchema,
+        proj_2:projectSchema,
+        proj_3:projectSchema,
+        proj_4:projectSchema,
+        proj_5:projectSchema,
+        proj_6:projectSchema
     },
     experience:{
-        type:[String],
-        requred:true
+        exp_1:expSchema,
+        exp_2:expSchema,
+        exp_3:expSchema,
+        exp_4:expSchema,
+        exp_5:expSchema,
+        exp_6:expSchema
     }
 
     
@@ -187,9 +217,82 @@ app.post("/addbasic", upload.single('files'), async (req, res) => {
         title: title,
         about: about,
         image: { data: imageBuffer, contentType: req.file.mimetype},
-        skills:skill,
-        projects:project,
-        experience:exp
+        skills: {
+          skill1: {
+              skill_name: skill1_name,
+              skill_info: skill1_info
+          },
+          skill2: {
+            skill_name: skill2_name,
+            skill_info: skill1_info
+          },
+          skill3: {
+            skill_name: skill3_name,
+            skill_info: skill1_info
+          },
+          skill4: {
+            skill_name: skill4_name,
+            skill_info: skill1_info
+          },
+          skill5: {
+            skill_name: skill4_name,
+            skill_info: skill1_info
+          },
+          skill6: {
+            skill_name: skill4_name,
+            skill_info: skill1_info
+          }},
+        projects:
+        {
+          proj_1: {
+              project_name: project1_name,
+              project_info: project1_info
+          },
+          proj_2: {
+              project_name: project2_name,
+              project_info: project2_info
+          },
+          proj_3: {
+              project_name: project3_name,
+              project_info: project3_info
+          },
+          proj_4: {
+              project_name: project4_name,
+              project_info: project4_info
+          },
+          proj_5: {
+              project_name: project5_name,
+              project_info: project5_info
+          },
+          proj_6: {
+              project_name: project6_name,
+              project_info: project6_info
+          }},
+        experience:{
+          exp_1: {
+              exp_name: exp1_name,
+              exp_info: exp1_info
+          },
+          exp_2: {
+              exp_name: exp2_name,
+              exp_info: exp2_info
+          },
+          exp_3: {
+              exp_name: exp3_name,
+              exp_info: exp3_info
+          },
+          exp_4: {
+              exp_name: exp4_name,
+              exp_info: exp4_info
+          },
+          exp_5: {
+              exp_name: exp5_name,
+              exp_info: exp5_info
+          },
+          exp_6: {
+              exp_name: exp6_name,
+              exp_info: exp6_info
+          }}
     })
 
 
