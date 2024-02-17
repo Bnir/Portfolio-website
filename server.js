@@ -23,12 +23,12 @@ const { json } = pkg;
 dotenv.config();
 const username = process.env.MONGODB_USERNAME;
 const password = process.env.MONGODB_PASSWORD;
-mongoose.connect(`mongodb+srv://${username}:${password}@suckdeeznuts.8qvqsne.mongodb.net/PortfolioSite`)
+mongoose.connect(`mongodb+srv://${username}:${password}@portfoliogen.emzz7tb.mongodb.net/?retryWrites=true&w=majority`)
 const app = express() ;
 // const MongoDBStoreSession = MongoDBStore(session);
 
-// const storage = multer.memoryStorage(); // Save the file in memory as a Buffer
-// const upload = multer({ storage: storage });
+const storage = multer.memoryStorage(); // Save the file in memory as a Buffer
+const upload = multer({ storage: storage });
 const port =process.env.PORT || 5000;
 app.use(express.static('public'));
 app.use(express.urlencoded({extended:true}))
@@ -181,7 +181,7 @@ const Basic = mongoose.model("BasicInfo",BasicSchema)
 
 
 app.post("/addbasic", upload.single('files'), async (req, res) => {
-    var email=sessionStorage.getItem('useremail')
+    // var email=sessionStorage.getItem('useremail')
     console.log(email);
     const { title, name, about, hello } = req.body;
     const imageBuffer = req.file.buffer;
@@ -193,7 +193,7 @@ app.post("/addbasic", upload.single('files'), async (req, res) => {
     })
 
 
-    userinfo.save()
+    await userinfo.save()
     res.redirect("/template")
 
 })
@@ -257,7 +257,7 @@ app.post("/register",async (req,res)=>{
     try {
         
         const {name,email,password,associatedData} = req.body
-        // const exist = await Registration.findOne({ email:email })
+        const exist = await Registration.findOne({ email:email })
 
         const hashpass= await bcrypt.hash(password,10)
         if (!exist)  {const user = new Registration ({
