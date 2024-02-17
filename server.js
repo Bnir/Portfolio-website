@@ -344,25 +344,46 @@ app.get("/login",(req,res)=>{
 // }
  
 
+// app.post('/login', async (req, res) => {
+//   try {
+//     const lurl =req.get('Referer') || '/';
+//     const { username, email,password} = req.body;
+//     var user_email=email
+//     const exist = await Registration.findOne({email:email})
+
+//     const newpass=await bcrypt.compare(password, exist.password)
+//     if (exist && newpass) {
+//       req.session.userId = exist._id;
+//       const redirectTo = req.session.returnTo || '/';
+//       delete req.session.returnTo; // Clear the stored URL
+//       res.redirect(redirectTo);
+//       sessionStorage.setItem('useremail',email)
+//     } else {
+//       res.status(401).send('Invalid credentials');
+//     }
+//   } catch (error) {
+//     res.status(500).send('Error during login');
+//   }
+// });
+
 app.post('/login', async (req, res) => {
   try {
-    const lurl =req.get('Referer') || '/';
-    const { username, email,password} = req.body;
-    var user_email=email
-    const exist = await Registration.findOne({email:email})
+    const lurl = req.get('Referer') || '/';
+    const { email, password } = req.body; // You're not using username here, so remove it from destructuring
+    const user = await Registration.findOne({ email });
 
-    const newpass=await bcrypt.compare(password, exist.password)
-    if (exist && newpass) {
-      req.session.userId = exist._id;
-      const redirectTo = req.session.returnTo || '/';
-      delete req.session.returnTo; // Clear the stored URL
-      res.redirect(redirectTo);
-      sessionStorage.setItem('useremail',email)
+    if (user && (await bcrypt.compare(password, user.password))) {
+      // req.session.userId = user._id;
+      // const redirectTo = req.session.returnTo || '/';
+      // delete req.session.returnTo; // Clear the stored URL
+      res.redirect("/");
+      // sessionStorage.setItem('useremail', email);
     } else {
       res.status(401).send('Invalid credentials');
     }
   } catch (error) {
-    res.status(500).send('Error during login' + " boskdi");
+    console.error(error);
+    res.status(500).send('Error during login');
   }
 });
 
