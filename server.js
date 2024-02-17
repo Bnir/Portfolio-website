@@ -123,7 +123,7 @@ passport.serializeUser((user, done) => {
 app.get('/',(req,res)=>{
     res.render('index.ejs')
 })
-app.get("/p1",requireLogin,(req,res)=>{
+app.get("/p1",(req,res)=>{
     res.render("portfolio-1/p-1index.ejs",{
         title:"Portfolio",
         name: "Mahesh DAlle",
@@ -131,16 +131,16 @@ app.get("/p1",requireLogin,(req,res)=>{
 
     })
 })
-app.get("/p2",requireLogin,(req,res)=>{
+app.get("/p2",(req,res)=>{
     res.render("portfolio-2/p-2index.ejs")
 })
 
-app.get("/p3",requireLogin,(req,res)=>{
+app.get("/p3",(req,res)=>{
     res.render("portfolio-3/p-3index.ejs")
 })
 
 
-app.get("/addinfo",requireLogin,(req,res)=>{
+app.get("/addinfo",(req,res)=>{
     res.sendFile(__dirname + "/views/addinfo.html")
 })
 
@@ -377,7 +377,7 @@ app.post('/login', async (req, res) => {
       // const redirectTo = req.session.returnTo || '/';
       // delete req.session.returnTo; // Clear the stored URL
       res.redirect("/");
-      // sessionStorage.setItem('useremail', email);
+      // sessionStorage.setItem('useremail', email);  
     } else {
       res.status(401).send('Invalid credentials');
     }
