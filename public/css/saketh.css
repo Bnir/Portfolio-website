@@ -24,7 +24,6 @@ body
     justify-content: space-between;
     align-items: center;
     transition: 0.5s;
-    z-index: 11000;
 }
 .header-scrolled
 {
@@ -68,7 +67,7 @@ body{
 }
 section
 {
-    height: 100vh;
+    padding-bottom: 100px;
     color: #fefcfc;
     width: 100%;
     padding-top: 89px;
@@ -76,8 +75,13 @@ section
 
 #intro
 {
-    background: linear-gradient(rgba(0,0,0,0.5),rgba(244, 240, 240, 0.084));
+    /* background: linear-gradient(rgba(0,0,0,0.5),rgba(244, 240, 240, 0.084)); */
     padding-left: 15px;
+
+}
+
+.introh{
+    width: 80%;
 }
 #intro h1
 {
@@ -88,9 +92,9 @@ section
     text-decoration: underline;
     text-decoration-color: #44ad6e;
 }
-#intro h3
+#intro p
 {
-    font-size: larger;
+    font-size: 1.1rem;
     font-weight: 100;
     font-style: oblique;
 }
@@ -391,3 +395,7 @@ section
     margin: 15px;
 }
 
+.navbar{
+    z-index: -1000;
+    position: relative;
+}
