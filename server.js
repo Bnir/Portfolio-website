@@ -45,12 +45,11 @@ app.use(session({ secret: 'halwaaaabhengan102001200120001', resave: true, saveUn
 app.set('view engine', 'ejs');
 app.use(passport.initialize());
 app.use(passport.session());
-// app.use(session({
-//   secret: 'halwaaaabhengan102001200120001',
-//   resave: false,
-//   saveUninitialized: true,
-//   store: store
-// }));
+app.use(session({
+  secret: 'halwaaaabhengan102001200120001',
+  resave: false,
+  saveUninitialized: true,
+}));
 
 
 
@@ -74,7 +73,7 @@ app.use(passport.session());
 
 // Middleware to check if the user is logged in
 const requireLogin = (req, res, next) => {
-    if (req.session.userId) {
+    if (req.session.email) {
       // User is logged in, proceed to the next middleware or route handler
       next();
     } else {
@@ -123,7 +122,7 @@ passport.serializeUser((user, done) => {
 app.get('/',(req,res)=>{
     res.render('index.ejs')
 })
-app.get("/p1",(req,res)=>{
+app.get("/p1",requireLogin,(req,res)=>{
     res.render("portfolio-1/p-1index.ejs",{
         title:"Portfolio",
         name: "Mahesh DAlle",
@@ -131,16 +130,18 @@ app.get("/p1",(req,res)=>{
 
     })
 })
-app.get("/p2",(req,res)=>{
+app.get("/p2",requireLogin,(req,res)=>{
     res.render("portfolio-2/p-2index.ejs")
 })
 
-app.get("/p3",(req,res)=>{
+app.get("/p3",requireLogin,(req,res)=>{
     res.render("portfolio-3/p-3index.ejs")
-})
+})  
 
 
-app.get("/addinfo",(req,res)=>{
+app.get("/addinfo",requireLogin,(req,res)=>{
+    const userEmail = req.session.email;
+    console.log(userEmail);
     res.sendFile(__dirname + "/views/addinfo.html")
 })
 
@@ -183,6 +184,7 @@ const Basic = mongoose.model("BasicInfo",BasicSchema)
 app.post("/addbasic", upload.single('files'), async (req, res) => {
     // var email=sessionStorage.getItem('useremail')
     // console.log(email);
+    
     const { title, name, about, hello } = req.body;
     const imageBuffer = req.file.buffer;
  const userinfo = new Basic({
@@ -371,9 +373,12 @@ app.post('/login', async (req, res) => {
     const lurl = req.get('Referer') || '/';
     const { email, password } = req.body; // You're not using username here, so remove it from destructuring
     const user = await Registration.findOne({ email });
+    
 
     if (user && (await bcrypt.compare(password, user.password))) {
       // req.session.userId = user._id;
+      req.session.email = email;
+      // console.log(req.session.email);
       // const redirectTo = req.session.returnTo || '/';
       // delete req.session.returnTo; // Clear the stored URL
       res.redirect("/");
