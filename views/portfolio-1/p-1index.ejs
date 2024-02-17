@@ -76,10 +76,23 @@
         <main class="main-body"> 
         <!-- expertise  -->
         <section class="expertise-div" id="anchor-expertise">
-          <div class="expertise-head"> My Expertise <hr></div>
+          <div class="expertise-head"> My Skills <hr></div>
           <div class="row">
           <div class="col-sm-6 mb-3 mb-sm-0  h-100">
-            <div class="card">
+            <% if (locals.skillArray) { %>
+              <% for( let index = 0; index < skillArray.length; index++ ) { %>
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">
+                      <%=skillArray[index].skill_name%>
+                    </h5>
+                    <p class="card-text"><%=skillArray[index].skill_info%> </p>
+       
+                  </div>
+                </div>
+              
+              <% }} else{ %>
+             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Software Developer</h5>
                 <p class="card-text">Fully experienced in mern stack </p>
@@ -96,6 +109,8 @@
               </div>
             </div>
           </div>
+            <% } %>
+            
         </div>
       </section>
                 
@@ -107,7 +122,24 @@
             <div class="container px-4 py-5" id="featured-3">
                 <h2 class="pb-2 border-bottom">Experience's</h2>
                 <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-                  <div class="feature col">
+                  <% if (locals.projectArray) { %>
+                    <% for( let index = 0; index < projectArray.length; index++ ) { %>
+                        <div class="feature col">
+                        <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                          <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"></use></svg>
+                        </div>
+                        <h3 class="fs-2 text-body-emphasis">
+                          <%=projectArray[index].project_name %> 
+                        </h3>
+                        <p><%=projectArray[index].project_info %></p>
+                        <a href="#" class="icon-link">
+                          Call to action
+                          <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+                        </a>
+                      </div>
+
+                    <% }}else {  %>
+                   <div class="feature col">
                     <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
                       <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"></use></svg>
                     </div>
@@ -140,6 +172,8 @@
                       <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
                     </a>
                   </div>
+                  <% } %>
+                  
                 </div>
               </div>
 
@@ -152,7 +186,17 @@
             <div class="projects-div"> My Projects <hr></div>
             <div class="projects">  
                 
-
+              <% if (locals.projectArray) { %>
+                <% for( let index = 0; index < projectArray.length; index++ ) { %>
+              <div class="card" style="width: 18rem;">
+                <img src="pics/Screenshot 2024-01-27 102523.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title"><%=projectArray[index].project_name %> </h5>
+                  <p class="card-text"><%=projectArray[index].project_info %></p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+              <%}}else{ %> 
               <div class="card" style="width: 18rem;">
                 <img src="pics/Screenshot 2024-01-27 102523.png" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -171,15 +215,6 @@
                 </div>
               </div>
 
-              <div class="card" style="width: 18rem;">
-                <img src="pics/Screenshot 2024-01-27 102523.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Projects</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-
 
               <div class="card" style="width: 18rem;">
                 <img src="pics/Screenshot 2024-01-27 102523.png" class="card-img-top" alt="...">
@@ -189,6 +224,7 @@
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
               </div>
+              <%}%>
 
             </div>
           </section>
