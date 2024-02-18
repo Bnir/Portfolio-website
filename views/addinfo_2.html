@@ -110,8 +110,7 @@
     <script>
          let check = document.getElementById('checker');
     let texter = document.getElementById('about');
-    let buttto
- = document.getElementById('submit');
+    let buttons = document.getElementById('submit');
 texter.addEventListener('input', () => {
       var textvalue = texter.value;
       var counter = textvalue.length;
@@ -124,7 +123,7 @@ texter.addEventListener('input', () => {
     })
 
     buttons.addEventListener('click', () => {
-      if (textvalue.length <> 00) {
+      if (textvalue.length > 100) {
 
         alert("About Me character length exceeded");
       }
