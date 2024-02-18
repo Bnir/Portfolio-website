@@ -640,6 +640,7 @@ app.get("/p1",requireLogin,async (req,res)=>{
     await res.render("portfolio-1/p-1index.ejs", {
         title: title,
         name: name,
+        aboutme:about,
         skillArray: skillArray,
         projectArray:projectArray,
         experienceArray: expArray,
