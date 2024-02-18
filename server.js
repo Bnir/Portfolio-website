@@ -586,8 +586,7 @@ app.get("/p1",requireLogin,async (req,res)=>{
   if (data) {
     const { title, name, about, skills,projects,experience,links} = data;
     // console.log(skills,projects,experience);
-    const TITLE = data.title;
-    const NAME = data.name;
+    
     // const skill_number=[skill1,skill2,skill3,skill4,skill5,skill6]
     // const skill1_name=skills.skill1.skill_name;
     let skillArray=[]
