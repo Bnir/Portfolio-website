@@ -1,66 +1,67 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Generator</title>
+    <title>Shortly - URL Shortener</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         /* Custom styles */
         .pretty-bg {
-            background-color: #FCE7F3;
+            background-color: #f0f4fd;
         }
 
         .pretty-card {
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
         .pretty-btn {
-            background-color: #F06292;
-            border-color: #F06292;
+            background-color: #2acfcf;
         }
 
         .pretty-btn:hover {
-            background-color: #EC407A;
-            border-color: #EC407A;
+            background-color: #2acfcf;
+            filter: brightness(90%);
         }
     </style>
 </head>
 
 <body class="h-full pretty-bg">
-    <nav class="bg-transparent p-4">
+    <nav class="bg-white p-4">
         <div class="flex justify-between items-center">
-            <div class="text-pink-600 text-2xl font-bold">WELCOME</div>
+            <div class="text-blue-600 text-2xl font-bold">Shortly</div>
             <div class="flex space-x-4">
-                <a href="/p2" class="text-pink-600">p2</a>
-                <a href="/p1" class="text-pink-600">p1</a>
-                <a href="/p3" class="text-pink-600">p3</a>
+                <a href="/p2" class="text-blue-600">Features</a>
+                <a href="/p1" class="text-blue-600">Pricing</a>
+                <a href="/p3" class="text-blue-600">Resources</a>
                 <% if (locals.loggedin) { %>
                 <form action="/logout" method="get">
-                    <button class="text-white pretty-btn">LogOut</button>
+                    <button class="text-white pretty-btn px-4 py-2 rounded-md">LogOut</button>
                 </form>
                 <% }else{ %>
                 <form action="/login" method="get">
-                    <button class="text-white pretty-btn">Login</button>
+                    <button class="text-white pretty-btn px-4 py-2 rounded-md">Login</button>
                 </form>
                 <form action="/register" method="get">
-                    <button class="text-white pretty-btn">Register</button>
+                    <button class="text-white pretty-btn px-4 py-2 rounded-md">Sign Up</button>
                 </form>
                 <%}%>
             </div>
         </div>
     </nav>
     <div class="container mx-auto flex justify-between items-center mt-16">
-        <div class="w-1/2 px-4 pretty-card rounded-lg shadow-lg">
-            <h1 class="text-4xl font-bold text-pink-600 mb-4">Portfolio Generator</h1>
-            <p class="text-lg text-gray-800 mb-6">Are you ready to showcase your talents and accomplishments in a stunning online portfolio? Look no further! Our portfolio generator allows you to effortlessly create a personalized webpage that reflects your unique style and highlights your professional journey.</p>
+        <div class="w-1/2 px-4 pretty-card rounded-lg shadow-md">
+            <h1 class="text-4xl font-bold text-blue-600 mb-4">Shorten your links</h1>
+            <p class="text-lg text-gray-800 mb-6">Build your brand’s recognition and get detailed insights on how your links are performing.</p>
             <form action="/addinfo" method="get">
-                <button class="bg-pink-600 text-lg text-white px-8 py-4 rounded-full pretty-btn hover:bg-pink-700">Build my portfolio</button>
+                <input type="text" class="w-full border border-gray-300 rounded-md px-4 py-3 mb-4" placeholder="Shorten a link here...">
+                <button class="text-white pretty-btn px-8 py-3 rounded-full hover:bg-blue-700">Shorten It!</button>
             </form>
         </div>
         <div class="w-1/2 px-4">
-            <img src="images/Picture1.png" alt="image of templates" class="w-full rounded-lg shadow-lg">
+            <img src="images/illustration-working.svg" alt="illustration of working" class="w-full">
         </div>
     </div>
 </body>
