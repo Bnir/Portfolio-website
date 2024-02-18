@@ -187,13 +187,14 @@
                 </ul>
             </div>
             <section id="Projects" class="projects-container">
+                <% if (locals.projectArray) { %>
+                        <% for( let index = 0; index < projectArray.length; index++ ) { %>
                 <div class="project">
                     <div class="imagecont">
                         <img src="https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2018/06/apple-music-widgets.jpg?w=1500&quality=82&strip=all&ssl=1"
                             alt="">
                     </div>
-                    <% if (locals.projectArray) { %>
-                        <% for( let index = 0; index < projectArray.length; index++ ) { %>
+                    
                     <div class="procont">
                         <h2><%=projectArray[index].project_name %></h2>
                         <p><%=projectArray[index].project_info %></p>
@@ -240,10 +241,10 @@
                             include the principles of REST APIs, user auth flows, Node, Express, React, Styled
                             Components, and more.</p>
                     </div>
-                    <%}%>
+                    
 
                 </div>
-
+                <%}%>
             </section>
 
         </div>
