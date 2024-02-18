@@ -704,7 +704,7 @@ app.get("/p2",requireLogin,async(req,res)=>{
         title: title,
         name: name,
         skillArray: skillArray,
-        projectArray:projectArray,
+        projectArray:projectArray,aboutme:about,
         experienceArray: expArray,
         links:linkarray});
   }else{
