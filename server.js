@@ -207,7 +207,8 @@ const BasicSchema = new Schema({
       ilink:String,
       llink:String,
       xlink:String,
-      flink:String
+      flink:String,
+      glink:String
 
     }
 
@@ -237,7 +238,7 @@ app.post("/addbasic", upload.single('image'), async (req, res) => {
       exp4_name,exp4_info,
       exp5_name,exp5_info,
       exp6_name,exp6_info
-      ,ilink,xlink,flink,llink} = req.body;
+      ,ilink,xlink,flink,llink,glink} = req.body;
       
      
 
@@ -330,7 +331,8 @@ app.post("/addbasic", upload.single('image'), async (req, res) => {
             ilink:ilink,
             flink:flink,
             xlink:xlink,
-            llink:llink
+            llink:llink,
+            glink:glink
           }
     })
 
@@ -632,7 +634,7 @@ app.get("/p1",requireLogin,async (req,res)=>{
     // const flink={flink:links.flink};
     // const llink={llink:links.llink};
     // const linkarray={ilink}
-    const linkarray={ilink:links.ilink,xlink:links.xlink,flink:links.flink,llink:links.llink}
+    const linkarray={ilink:links.ilink,xlink:links.xlink,flink:links.flink,llink:links.llink,glink:links.glink}
     console.log(linkarray.ilink);
     // console.log(skill1_name,name);
     await res.render("portfolio-1/p-1index.ejs", {
@@ -697,12 +699,7 @@ app.get("/p2",requireLogin,async(req,res)=>{
     }
     console.log(expArray);
     //link array
-    let linkarray=[];
-    for (let index = 0; index < 4; index++) {
-      linkarray.push(links[index])
-      
-    }
-    console.log(linkarray);
+    const linkarray={ilink:links.ilink,xlink:links.xlink,flink:links.flink,llink:links.llink,glink:links.glink}
 
   // console.log(skill1_name,name);
     await res.render("portfolio-2/p-2index.ejs", {
