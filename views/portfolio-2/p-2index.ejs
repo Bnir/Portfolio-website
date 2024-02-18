@@ -88,29 +88,27 @@
 
             <section id="Work-experience" class="works-cont sections">
 
-                
+                <% if (locals.experienceArray) { %>
+                    <% for( let index = 0; index < experienceArray.length; index++ ) { %>
                 <a href="">
                     <div class="work">
                         <div class="year">
-                            <p>2024-present</p>
+                            <p> >>></p>
                         </div>
                         <div class="work-details">
-                            <h2>Lead Engineer - Microsoft</h2>
+                            <h2>
+                                <%=experienceArray[index].exp_name %> 
+                            </h2>
                             <!-- <h4>Senior Engineer</h4> -->
-                            <p>Build, style, and ship high-quality websites, design systems, mobile apps, and digital
-                                experiences for a diverse array of projects for clients including Harvard Business
-                                School,
-                                Everytown for Gun Safety, Pratt Institute, Koala Health, Vanderbilt University, The 19th
-                                News, and more. Provide leadership within engineering department through close
-                                collaboration, knowledge shares, and spearheading the development of internal tools.</p>
+                            <p><%=experienceArray[index].exp_info %></p>
                         </div>
                     </div>
                 </a>
-
+                <% }}else {  %>
                 <a href="">
                     <div class="work">
                         <div class="year">
-                            <p>JUNE-DEC 2020</p>
+                            <p> </p>
                         </div>
                         <div class="work-details">
                             <h2>Software Engineer - Microsoft</h2>
@@ -131,7 +129,7 @@
                 <a href="">
                     <div class="work">
                         <div class="year">
-                            <p>2018-2020</p>
+                            <p> >>>  </p>
                         </div>
                         <div class="work-details">
                             <h2>Software Engineer - Amazon</h2>
@@ -151,7 +149,7 @@
                 <a href="">
                     <div class="work">
                         <div class="year">
-                            <p>APR 2017-DEC 2017</p>
+                            <p> </p>
                         </div>
                         <div class="work-details">
                             <h2>Assistant developer - Ubisoft</h2>
@@ -165,47 +163,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="">
-                    <div class="work">
-                        <div class="year">
-                            <p>2016-DEC 2016</p>
-                        </div>
-                        <div class="work-details">
-                            <h2>Junior developer - Ubisoft</h2>
-                            <!-- <h4>Junior</h4> -->
-                            <p>Architect innovative technology solutions across a variety of projects, working with
-                                clients
-                                such as global sustainability initiatives, emerging fintech disruptors, influential
-                                cultural
-                                institutions, leading biotech companies, and forward-thinking educational platforms.
-                                Lead
-                                the engineering team by promoting a collaborative culture, facilitating
-                                knowledge-sharing,
-                                and driving the creation of internal tools to optimize workflows and boost productivity.
-                            </p>
-                        </div>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="work">
-                        <div class="year">
-                            <p>2015-2016</p>
-                        </div>
-                        <div class="work-details">
-                            <h2>Technical Support - Ubisoft</h2>
-                            <!-- <h4>Junior</h4> -->
-                            <p>Architect and deliver digital solutions for diverse projects with clients including
-                                Harvard
-                                Business School, Everytown for Gun Safety, Pratt Institute, Koala Health, Vanderbilt
-                                University, The 19th News, and more. Play a leadership role in the engineering
-                                department,
-                                promoting collaboration and knowledge-sharing, and driving the development of internal
-                                tools
-                                to optimize workflows and deliver high-quality outcomes.
-                            </p>
-                        </div>
-                    </div>
-                </a>
+                <%}%>
 
             </section>
             <a class="resume-cont" href="google.com">
@@ -216,10 +174,16 @@
             <div class="skills">
                 <h1>Skills</h1>
                 <ul>
-                    <li>Effective communication.</li>
+                    <% if (locals.skillArray) { %>
+                    <% for( let index = 0; index < skillArray.length; index++ ) { %>
+                    <li>
+                        <%=skillArray[index].skill_name%>
+                    </li>
+                    <% }} else{ %>
                     <li>Project management.</li>
                     <li>Problem-solving.</li>
                     <li>Foreign language proficiency.</li>
+                    <% } %>
                 </ul>
             </div>
             <section id="Projects" class="projects-container">
@@ -228,14 +192,14 @@
                         <img src="https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2018/06/apple-music-widgets.jpg?w=1500&quality=82&strip=all&ssl=1"
                             alt="">
                     </div>
+                    <% if (locals.projectArray) { %>
+                        <% for( let index = 0; index < projectArray.length; index++ ) { %>
                     <div class="procont">
-                        <h2>Build a Spotify Connected App</h2>
-                        <p>Video course that etaches how to build a web app with the Spotify Weeb API. Topics covered
-                            include the principles of REST APIs, user auth flows, Node, Express, React, Styled
-                            Components, and more.</p>
+                        <h2><%=projectArray[index].project_name %></h2>
+                        <p><%=projectArray[index].project_info %></p>
                     </div>
                 </div>
-
+                <%}}else{ %> 
                 <div class="project">
                     <div class="imagecont">
                         <img src="https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2018/06/apple-music-widgets.jpg?w=1500&quality=82&strip=all&ssl=1"
@@ -276,6 +240,8 @@
                             include the principles of REST APIs, user auth flows, Node, Express, React, Styled
                             Components, and more.</p>
                     </div>
+                    <%}%>
+
                 </div>
 
             </section>
