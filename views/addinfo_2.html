@@ -140,7 +140,7 @@
             </div>
             <button id="submits" type="submit"
                 class="block bg-green-500 text-white px-4 py-2 rounded mt-8 hover:bg-green-600">Submit</button>
-            <p class="button-para">Please Check your form again!!</p>
+            <p id="paras" class="button-para">Please Check your form again!!</p>
         </form>
     </div>
 
@@ -148,10 +148,13 @@
         let check = document.getElementById('checker');
         let texter = document.getElementById('about');
         let buttons = document.getElementById('submits');
+        let para = document.getElementById('paras');
+
         texter.addEventListener('input', () => {
             var textvalue = texter.value;
             var counter = textvalue.length;
             if (counter <= 100) {
+                para.style.display = "inline";
                 buttons.disabled = false;
                 check.classList.remove('error-correct');
                 check.innerText = `${100 - counter} less characters left`;
@@ -159,6 +162,7 @@
             else {
                 check.innerText = `${counter - 100} charcters exceeded`;
                 buttons.disabled = true;
+                para.style.display = "none";
                 buttons.style.cursor = "not-allowed";
                 check.classList.add('error-correct');
             }
