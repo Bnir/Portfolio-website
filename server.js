@@ -11,6 +11,7 @@ import session from 'express-session';
 import multer from "multer";
 import passport from "passport";
 import { Strategy as LocalStrategy } from 'passport-local';
+import { link } from "fs";
 
 
 
@@ -237,6 +238,7 @@ app.post("/addbasic", upload.single('image'), async (req, res) => {
       exp5_name,exp5_info,
       exp6_name,exp6_info
       ,ilink,xlink,flink,llink} = req.body;
+      
      
 
 
@@ -580,7 +582,7 @@ app.get("/p1",requireLogin,async (req,res)=>{
   const data= await Basic.findOne({email:user_email})
  
   if (data) {
-    const { title, name, about, skills,projects,experience} = data;
+    const { title, name, about, skills,projects,experience,links} = data;
     // console.log(skills,projects,experience);
     const TITLE = data.title;
     const NAME = data.name;
@@ -613,6 +615,7 @@ app.get("/p1",requireLogin,async (req,res)=>{
     
     let expArray=[]
     for (let index = 1; index <= 6; index++) {
+      
       var exp_num = experience[`exp_${index}`];
       if (exp_num.exp_name) {
         expArray.push(exp_num);
@@ -622,39 +625,36 @@ app.get("/p1",requireLogin,async (req,res)=>{
       // }
     }
     console.log(expArray);
-
-  // console.log(skill1_name,name);
+    //link array
+    // console.log(links.ilink)
+    // const ilink={ilink:links.ilink};
+    // const xlink={xlink:links.xlink};
+    // const flink={flink:links.flink};
+    // const llink={llink:links.llink};
+    // const linkarray={ilink}
+    const linkarray={ilink:links.ilink,xlink:links.xlink,flink:links.flink,llink:links.llink}
+    console.log(linkarray.ilink);
+    // console.log(skill1_name,name);
     await res.render("portfolio-1/p-1index.ejs", {
         title: title,
         name: name,
         skillArray: skillArray,
         projectArray:projectArray,
-        experienceArray: expArray});
+        experienceArray: expArray,
+      links:linkarray})
   }else{
-    console.log("data not found");
+    console.log("data not found")
   }
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
 })
+
+
 app.get("/p2",requireLogin,async(req,res)=>{
   // res.render("portfolio-2/p-2index.ejs")
   const user_email=req.session.email
   const data= await Basic.findOne({email:user_email})
  
   if (data) {
-    const { title, name, about, skills,projects,experience} = data;
+    const { title, name, about, skills,projects,experience,links} = data;
     // console.log(skills,projects,experience);
     const TITLE = data.title;
     const NAME = data.name;
@@ -682,7 +682,7 @@ app.get("/p2",requireLogin,async(req,res)=>{
       //   console.log('invalid credi');
       // }
     }
-
+    
     console.log(projectArray);
     
     let expArray=[]
@@ -696,6 +696,13 @@ app.get("/p2",requireLogin,async(req,res)=>{
       // }
     }
     console.log(expArray);
+    //link array
+    let linkarray=[];
+    for (let index = 0; index < 4; index++) {
+      linkarray.push(links[index])
+      
+    }
+    console.log(linkarray);
 
   // console.log(skill1_name,name);
     await res.render("portfolio-2/p-2index.ejs", {
@@ -703,7 +710,8 @@ app.get("/p2",requireLogin,async(req,res)=>{
         name: name,
         skillArray: skillArray,
         projectArray:projectArray,
-        experienceArray: expArray});
+        experienceArray: expArray,
+        links:linkarray});
   }else{
     console.log("data not found");
   }

@@ -246,24 +246,26 @@
                 <div class="contact-links lh-1"> 
                    <h4> Contact me :</h4> <br>   
                    <div class="contact-links-logo">
-                    <a href="
-                    <%if (locals.flink){  %>
-                      <%=flink%> 
-                    <%} %>
-                    " ><img src="/images/pics/facebook.png" alt="insta"></a>
-                    <a href="
-                    <%if (locals.ilink){  %>
-                      <%=ilink%> 
-                    <%} %>" ><img src="/images/pics/insta.png" alt="insta"></a>
-                    <a href="
-                    <%if (locals.llink){  %>
-                      llink 
-                    <%} %>" ><img src="/images/pics/LI-In-Bug.png" alt="insta"></a>
-                    <a href="
-                    <%if (locals.xlink){  %>
-                      xlink 
-                    <%} %>" ><img src="/images/pics/twitter.png" alt="insta"></a>
-                    
+                    <a href="<% if (locals.links) { %><%= links.flink %><% } else { %>
+                      # <%}%>">
+                      <img src="/images/pics/facebook.png" alt="Facebook">
+                  </a>
+                  
+                  <a href="<% if (locals.links ) { %><%= links.ilink %><% }  else { %>
+                    # <%}%>">
+                      <img src="/images/pics/insta.png" alt="Instagram">
+                  </a>
+                  
+                  <a href="<% if (locals.links ) { %> <%= links.llink %><% } else { %>
+                    # <%}%>">
+                      <img src="/images/pics/LI-In-Bug.png" alt="LinkedIn">
+                  </a>
+                  
+                  <a href="<% if (locals.links ) { %><%=links.xlink %><% }  else { %>
+                    /login <%}%>">
+                      <img src="/images/pics/twitter.png" alt="Twitter">
+                  </a>
+                  
             </div>
                 </div>
               </div>
