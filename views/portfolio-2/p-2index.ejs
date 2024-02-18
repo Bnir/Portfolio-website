@@ -21,8 +21,9 @@
     <div class="cont">
         <div class="leftside column1">
             <div class="details">
-                <h1><% if (locals.user_name) { %>
-                    user_name 
+                <h1>
+                    <% if (locals.name) { %>
+                    <%=name%> 
                     <% } else { %>
                      Manish Pandey
                     <% } %>
@@ -30,7 +31,7 @@
 
                 <h2>
                     <% if (locals.present_exp) { %>
-                        present_exp 
+                        <%= present_exp %>
                         <% } else { %>
                         Lead Engineer at Microsoft
                         <% } %>
@@ -55,11 +56,12 @@
                 </ul>
 
                 <div class="sociallinks">
-                    <a href="https://www.github.com" target="_blank"> <i class="fa-brands fa-github icon"></i></a>
-                    <a href="https://www.twitter.com" target="_blank"> <i class="fa-brands fa-x-twitter icon"></i></a>
-                    <a href="https://www.instagram.com" target="_blank"> <i class="fa-brands fa-instagram icon"></i></a>
-                    <a href="https://www.linkedin.com" target="_blank"> <i class="fa-brands fa-linkedin icon"></i></a>
+                    <a href="<% if (locals.links ) { %><%= locals.links.glink %><% } else { %> # <%}%>" target="_blank"> <i class="fa-brands fa-github icon"></i></a>
+                    <a href="<% if (locals.links) { %><%= locals.links.xlink %><% } else { %> # <%}%>" target="_blank"> <i class="fa-brands fa-x-twitter icon"></i></a>
+                    <a href="<% if (locals.links ) { %><%= locals.links.ilink %><% } else { %> # <%}%>" target="_blank"> <i class="fa-brands fa-instagram icon"></i></a>
+                    <a href="<% if (locals.links ) { %><%= locals.links.llink %><% } else { %> # <%}%>" target="_blank"> <i class="fa-brands fa-linkedin icon"></i></a>
                 </div>
+                
 
             </nav>
 
@@ -81,9 +83,7 @@
 
             <section id="Work-experience" class="works-cont sections">
 
-                <!-- <% if (locals.expArray) { %>
-                    <% for(let i=0; i<expArray; i++) { %>
-                         -->
+                
                 <a href="">
                     <div class="work">
                         <div class="year">
