@@ -189,7 +189,7 @@
               <% if (locals.projectArray) { %>
                 <% for( let index = 0; index < projectArray.length; index++ ) { %>
               <div class="card" style="width: 18rem;">
-                <img src="pics/Screenshot 2024-01-27 102523.png" class="card-img-top" alt="...">
+                <img src="/images/pics/Screenshot 2024-01-27 102523.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title"><%=projectArray[index].project_name %> </h5>
                   <p class="card-text"><%=projectArray[index].project_info %></p>
@@ -198,7 +198,7 @@
               </div>
               <%}}else{ %> 
               <div class="card" style="width: 18rem;">
-                <img src="pics/Screenshot 2024-01-27 102523.png" class="card-img-top" alt="...">
+                <img src="/images/pics/Screenshot 2024-01-27 102523.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Projects</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -207,7 +207,7 @@
               </div>
 
               <div class="card" style="width: 18rem;">
-                <img src="pics/Screenshot 2024-01-27 102523.png" class="card-img-top" alt="...">
+                <img src="/images/pics/Screenshot 2024-01-27 102523.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Projects</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -217,7 +217,7 @@
 
 
               <div class="card" style="width: 18rem;">
-                <img src="pics/Screenshot 2024-01-27 102523.png" class="card-img-top" alt="...">
+                <img src="/images/pics/Screenshot 2024-01-27 102523.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Projects</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -234,7 +234,7 @@
             <div class="container col-xxl-8 px-4 py-5 m-4 w-100">
                 <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                   <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="pics/Screenshot 2024-01-27 104835.png" class="d-block mx-lg-auto img-fluid rounded" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+                    <img src="/images/pics/Screenshot 2024-01-27 104835.png" class="d-block mx-lg-auto img-fluid rounded" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
                   </div>
                   <div class="col-lg-6">
                     <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">About Me</h1><br><br>
@@ -246,10 +246,23 @@
                 <div class="contact-links lh-1"> 
                    <h4> Contact me :</h4> <br>   
                    <div class="contact-links-logo">
-                    <a href="" ><img src="/images/pics/facebook.png" alt="insta"></a>
-                    <a href="" ><img src="/images/pics/insta.png" alt="insta"></a>
-                    <a href="" ><img src="/images/pics/LI-In-Bug.png" alt="insta"></a>
-                    <a href="" ><img src="/images/pics/twitter.png" alt="insta"></a>
+                    <a href="
+                    <%if (locals.flink){  %>
+                      <%=flink%> 
+                    <%} %>
+                    " ><img src="/images/pics/facebook.png" alt="insta"></a>
+                    <a href="
+                    <%if (locals.ilink){  %>
+                      <%=ilink%> 
+                    <%} %>" ><img src="/images/pics/insta.png" alt="insta"></a>
+                    <a href="
+                    <%if (locals.llink){  %>
+                      llink 
+                    <%} %>" ><img src="/images/pics/LI-In-Bug.png" alt="insta"></a>
+                    <a href="
+                    <%if (locals.xlink){  %>
+                      xlink 
+                    <%} %>" ><img src="/images/pics/twitter.png" alt="insta"></a>
                     
             </div>
                 </div>

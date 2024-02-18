@@ -201,6 +201,13 @@ const BasicSchema = new Schema({
         exp_4:expSchema,
         exp_5:expSchema,
         exp_6:expSchema
+    },
+    links:{
+      ilink:String,
+      llink:String,
+      xlink:String,
+      flink:String
+
     }
 
     
@@ -229,7 +236,7 @@ app.post("/addbasic", upload.single('image'), async (req, res) => {
       exp4_name,exp4_info,
       exp5_name,exp5_info,
       exp6_name,exp6_info
-      } = req.body;
+      ,ilink,xlink,flink,llink} = req.body;
      
 
 
@@ -316,7 +323,13 @@ app.post("/addbasic", upload.single('image'), async (req, res) => {
           exp_6: {
               exp_name: exp6_name,
               exp_info: exp6_info
-          }}
+          }},
+          links:{
+            ilink:ilink,
+            flink:flink,
+            xlink:xlink,
+            llink:llink
+          }
     })
 
 
