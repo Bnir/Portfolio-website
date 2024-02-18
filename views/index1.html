@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Million Dollar Portfolio Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-b from-purple-500 to-indigo-700 min-h-screen flex flex-col items-center justify-center">
+<nav class="bg-white bg-opacity-50 backdrop-blur-md py-4 px-8 rounded-lg shadow-lg mb-8">
+    <div class="container mx-auto flex justify-between items-center">
+        <div class="text-white text-xl font-bold">WELCOME</div>
+        <div class="space-x-4">
+            <a href="/p2" class="text-white hover:text-gray-200 transition-colors duration-300">Portfolio 2</a>
+            <a href="/p1" class="text-white hover:text-gray-200 transition-colors duration-300">Portfolio 1</a>
+            <a href="/p3" class="text-white hover:text-gray-200 transition-colors duration-300">Portfolio 3</a>
+            <% if (locals.loggedin) { %>
+                <form action="/logout" method="get">
+                    <button class="bg-purple-600 text-white px-4 py-2 rounded-md transition duration-300 hover:bg-purple-700">Log Out</button>
+                </form>
+            <% } else { %>
+                <form action="/login" method="get">
+                    <button class="bg-purple-600 text-white px-4 py-2 rounded-md transition duration-300 hover:bg-purple-700">Login</button>
+                </form>
+                <form action="/register" method="get">
+                    <button class="bg-purple-600 text-white px-4 py-2 rounded-md transition duration-300 hover:bg-purple-700">Register</button>
+                </form>
+            <% } %>
+        </div>
+    </div>
+</nav>
+<div class="container mx-auto px-4 py-16 flex items-center justify-center">
+    <div class="max-w-3xl">
+        <h1 class="text-5xl font-bold text-white mb-8 text-center">Million Dollar Portfolio Generator</h1>
+        <p class="text-lg text-white mb-12 text-center">Are you ready to showcase your talents and accomplishments in a stunning online portfolio? Look no further! Our portfolio generator allows you to effortlessly create a personalized webpage that reflects your unique style and highlights your professional journey.</p>
+        <div class="flex justify-center">
+            <form action="/addinfo" method="get">
+                <button class="bg-white text-purple-800 px-6 py-3 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105">Build my portfolio</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
