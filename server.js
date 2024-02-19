@@ -123,11 +123,14 @@ passport.serializeUser((user, done) => {
 
 app.get('/',(req,res)=>{
   if (req.session.email){
-    res.render('index.ejs',{loggedin:true})
+    // res.render('index1.html',{loggedin:true})
+    res.sendFile(__dirname+"/views/index1.html")
   }
   else{  
-    res.render('index.ejs',{loggedin:false}) } 
-})
+    // res.render('index.html',{loggedin:false}) } 
+    res.sendFile(__dirname+"/views/index1.html")
+}})
+
 
 
 app.get("/addinfo",requireLogin,(req,res)=>{
