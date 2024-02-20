@@ -1,136 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
 
-    <title>Portfolio Generator</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
 
-    <link
-      href="https://fonts.googleapis.com/css?family=Poppins:500,700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/styles2.css" />
+  <title>Portfolio Generator</title>
 
-    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-    <style>
-      .attribution {
-        font-size: 11px;
-        text-align: center;
-        margin-top: 10px;
-        margin-bottom: 10px;
-      }
-      .attribution a {
-        color: hsl(228, 45%, 44%);
-      }
-    </style>
-  </head>
-  <body>
-    <div class="root">
-      <div class="app-header">
-        <input type="checkbox" id="nav-visible" tabindex="-1" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins:500,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles2.css" />
 
-        <div class="navbar">
-          <a href="/" class="navbar-brand">
-            <span class="nav-head-1">Portfolio</span><span class="nav-head-2">GENERATOR</span>
-          </a>  
 
-          <label for="nav-visible" class="toggle-nav">
-            <svg class="icon-menu" class="icon-menu" width="25" viewBox="0 0 512 512">
-              <g>
-                <path
-                  d="M492,236H20c-11.046,0-20,8.954-20,20c0,11.046,8.954,20,20,20h472c11.046,0,20-8.954,20-20S503.046,236,492,236z"
-                ></path>
-              </g>
-              <g>
-                <path
-                  d="M492,76H20C8.954,76,0,84.954,0,96s8.954,20,20,20h472c11.046,0,20-8.954,20-20S503.046,76,492,76z"
-                ></path>
-              </g>
-              <g>
-                <path
-                  d="M492,396H20c-11.046,0-20,8.954-20,20c0,11.046,8.954,20,20,20h472c11.046,0,20-8.954,20-20
-                  C512,404.954,503.046,396,492,396z"
-                ></path>
-              </g>
-            </svg>
-          </label>
+  <style>
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
 
-          <nav class="navbar-nav">
-           
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+  </style>
+</head>
 
-            <div class="separator-mobile"></div>
+<body>
+  <div class="root">
+    <div class="app-header">
+      <input type="checkbox" id="nav-visible" tabindex="-1" />
 
-            <button type="button" class="btn btn-small btn-secondary btn-login"><a class="login-tag"href="/login" >Login </a></button>
-            <button type="button" class="btn btn-small btn-primary"><a class="login-tag" href="/register" >Sign Up</a></button>
-          </nav>
-        </div>
+      <div class="navbar">
+        <a href="/" class="navbar-brand">
+          <span class="nav-head-1">Portfolio</span><span class="nav-head-2">GENERATOR</span>
+        </a>
+
+        <label for="nav-visible" class="toggle-nav">
+          <svg class="icon-menu" class="icon-menu" width="25" viewBox="0 0 512 512">
+            <g>
+              <path
+                d="M492,236H20c-11.046,0-20,8.954-20,20c0,11.046,8.954,20,20,20h472c11.046,0,20-8.954,20-20S503.046,236,492,236z">
+              </path>
+            </g>
+            <g>
+              <path d="M492,76H20C8.954,76,0,84.954,0,96s8.954,20,20,20h472c11.046,0,20-8.954,20-20S503.046,76,492,76z">
+              </path>
+            </g>
+            <g>
+              <path d="M492,396H20c-11.046,0-20,8.954-20,20c0,11.046,8.954,20,20,20h472c11.046,0,20-8.954,20-20
+                  C512,404.954,503.046,396,492,396z"></path>
+            </g>
+          </svg>
+        </label>
+
+        <nav class="navbar-nav">
+
+
+          <div class="separator-mobile"></div>
+
+          <button type="button" class="btn btn-small btn-secondary btn-login"><a class="login-tag" href="/login">Login
+            </a></button>
+          <button type="button" class="btn btn-small btn-primary"><a class="login-tag" href="/register">Sign
+              Up</a></button>
+        </nav>
+      </div>
+    </div>
+
+    <div class="intro">
+      <div class="content">
+        <h1 class="title">More than just Portfolios</h1>
+        <p class="desc">
+          Are you ready to showcase your talents and accomplishments in a stunning online portfolio? Look no further!
+          Our portfolio generator allows you to effortlessly create a personalized webpage that reflects your unique
+          style and highlights your professional journey.
+        </p>
+        <form action="/addinfo" method="get"><button class="btn btn-primary">Get Started</button></form>
       </div>
 
-      <div class="intro">
-        <div class="content">
-          <h1 class="title">More than just Portfolios</h1>
-          <p class="desc">
-            Are you ready to showcase your talents and accomplishments in a stunning online portfolio? Look no further! Our portfolio generator allows you to effortlessly create a personalized webpage that reflects your unique style and highlights your professional journey.
-          </p>
-          <button class="btn btn-primary">Get Started</button>
-        </div>
-
-        <div class="img-wrapper">
-          <img src="images/pics/image.svg" alt="" role="presentation" />
-        </div>
-
-    
+      <div class="img-wrapper">
+        <img src="images/pics/image.svg" alt="" role="presentation" />
       </div>
 
-      <div class="stats">
-        <div class="content">
-          <h1 class="title">Portfolio Templates</h1>
-          <p class="desc">
-            Choose your favarite template
-          </p>
+    </div>
 
-          <div class="cards">
-            <div class="card">
-              <div class="card-icon">
+    <div class="stats">
+      <div class="content">
+        <h1 class="title">Portfolio Templates</h1>
+        <p class="desc">
+          Explore our Hand-Crafted templates
+        </p>
+
+        <div class="cards">
+          <div class="card">
+            <a href="/p2"><img src="images/temp1.png" alt=""></a>
+            <!-- <div class="card-icon">
                 <img src="images/icon-brand-recognition.svg" alt="" role="presentation" />
               </div>
               <div class="card-title">Brand Recognition</div>
               <div class="card-body">
                 Boost your brand recognition with each click. Generic links don’t mean a thing.
                 Branded links help instil confidence in your content.
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-icon">
-                <img src="images/icon-detailed-records.svg" alt="" role="presentation" />
+              </div> -->
+          </div>
+          <div class="card">
+            <a href="/p3"><img src="images/temp2.png" alt=""></a>
+            <!-- <div class="card-icon">
+                <img src="../public/images/temp2.png" alt="" role="presentation" />
               </div>
               <div class="card-title">Detailed Records</div>
               <div class="card-body">
                 Gain insights into who is clicking your links. Knowing when and where people engage
                 with your content helps inform better decisions.
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-icon">
+              </div> -->
+          </div>
+          <div class="card">
+            <a href="/p1"><img src="images/temp3.png" alt=""></a>
+            <!-- <div class="card-icon">
                 <img src="images/icon-fully-customizable.svg" alt="" role="presentation" />
               </div>
-              <div class="card-title">Fully Customizable</div>
+              <div class="card-title">Fully Customisable</div>
               <div class="card-body">
                 Improve brand awareness and content discoverability through customizable links,
                 supercharging audience engagement.
-              </div>
-            </div>
+              </div> -->
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="start-now">
-        <h1 class="title">Boost your links today</h1>
-        <button class="btn btn-primary">Get Started</button>
-      </div>
-
+    <div class="start-now">
+      <h1 class="title">Kick-start on your Portfolio now!</h1>
+      <form action="/addinfo" method="get"><button class="btn btn-primary">Get Started</button></form>
+    </div>
+    <!-- 
       <div class="app-footer">
         <div class="content">
           <svg width="121" height="33" alt="Shortly's logo" class="logo">
@@ -182,11 +185,12 @@
               <img src="images/icon-instagram.svg" alt="Instagram page" />
             </a>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="attribution">
-        Crafted by the "Code Crafters"
-    </div>
-  </body>
+        </div> -->
+  </div>
+  </div>
+  <div class="attribution">
+    Crafted by the "Code Crafters"
+  </div>
+</body>
+
 </html>
