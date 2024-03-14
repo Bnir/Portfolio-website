@@ -243,10 +243,7 @@ app.post("/addbasic", upload.single('image'), async (req, res) => {
     exp4_name, exp4_info,
     exp5_name, exp5_info,
     exp6_name, exp6_info
-    , ilink, xlink, flink, llink, glink } = req.body;
-
-
-
+  ,ilink, xlink, flink, llink, glink } = req.body;
 
   const imageBuffer = req.file.buffer;
 
