@@ -5,24 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
-    <link rel="stylesheet" href="css/saketh.css">
+    <link rel="stylesheet" href="css/p3.css">
 
 </head>
 
 <body>
     <header class="header">
-        <a href="#intro" class="name">
-
-            <% if (locals.name) { %>
-                <%= name %>
-
-                    <% } else { %>
-                        Saketh Kumar.
-                        <% } %>
-
-
-
-        </a>
+        <a href="#intro" class="name">Saketh Kumar.</a>
         <nav class="navbar">
             <a href="#expertise">Expertise</a>
             <a href="#experience">Experience</a>
@@ -33,15 +22,9 @@
     </header>
     <div class="body-home">
         <section id="intro" class="introh">
-            <h1 style="margin-bottom: 20px;">Hi, I'm <% if (locals.name) { %>
-                    <%= name %>
-
-                        <% } else { %>
-                            Saketh Kumar
-                            <% } %>
-            </h1>
+            <h1 style="margin-bottom: 20px;">Hi, I'm Saketh Kumar!</h1>
             <h2>Full Stack Developer</h2><br>
-            <!-- <p>Back in 2012, I decided to try my hand at creating custom Tumblr themes and tumbled head first into the
+            <p>Back in 2012, I decided to try my hand at creating custom Tumblr themes and tumbled head first into the
                 rabbit hole
                 of coding and web development. <br> <br>Fast-forward to today, and I’ve had the privilege of building
                 software for an advertising
@@ -50,164 +33,101 @@
                 <br><br> I most enjoy building
                 software in the sweet spot where design and engineering meet — things that look good but are also built
                 well under the hood.
-
-            </p> -->
-            <p>
-                <%if (locals.aboutme) { %>
-                    <%=aboutme %>
-                        <%} else{%>
-                            Back in 2012, I decided to try my hand at creating custom Tumblr themes and tumbled head
-                            first into the
-                            rabbit hole
-                            of coding and web development. <br> <br>Fast-forward to today, and I’ve had the privilege of
-                            building
-                            software for an advertising
-                            agency, a start-up, a student-led design studio, and a huge corporation. <br><br>
-                            My main focus these days is building products and leading projects for our clients at
-                            Upstatement.
-                            <br><br> I most enjoy building
-                            software in the sweet spot where design and engineering meet — things that look good but are
-                            also built
-                            well under the hood.
-                            <%}%>
+               
             </p>
         </section>
         <section id="expertise">
             <h1>Expertise</h1>
-            <% if (locals.skillArray) { %>
-                <% for( let index=0; index < skillArray.length; index++ ) { %>
-                    <div id="expertise_1">
-                        <h2>
-                            <%=skillArray[index].skill_name%>
-                        </h2><br>
-                        <h3>
-                            <%=skillArray[index].skill_info%>
-                        </h3>
-                    </div>
-                    <% }} else{ %>
-
-                        <div id="expertise_2">
-                            <h2>HTML</h2><br>
-                            <h3>
-                                Assisted senior developers in translating basic client requests into an HTML code
-                                Co-led a brief 1-day HTML & CSS workshop for colleagues working in sales and marketing
-                                Assisted senior developers in developing the websites of 3 multinational clients
-                                Partnered with designers to ensure high-quality graphic content. I am Certified W3 HTML
-                                developer.
-                                I develop Personal HTML projects.
-                            </h3>
-                        </div>
-                        <div id="expertise_3">
-                            <h2>CSS</h2><br>
-                            <h3>
-                                Assisted senior developers in translating basic client requests into an HTML code
-                                Co-led a brief 1-day HTML & CSS workshop for colleagues working in sales and marketing
-                                Assisted senior developers in developing the websites of 3 multinational clients
-                                Partnered with designers to ensure high-quality graphic content. I am Certified W3 HTML
-                                developer.
-                                I develop Personal HTML projects.
-                            </h3>
-                        </div>
-                        <% } %>
-
+            <div id="expertise_1">
+                <h2>Javascript</h2><br>
+                <h3> A Seasoned Senior Javascript consultant with 5+ years of hands-on experience in the area of
+                    software analysis,
+                    design and development. Expertise in end-to-end software development life cycle processes and
+                    experienced in carrying out
+                    impact analysis, project review and documentation In-depth knowledge with Object Oriented
+                    Programming and design techniques.
+                </h3>
+            </div>
+            <div id="expertise_2">
+                <h2>HTML</h2><br>
+                <h3>
+                    Assisted senior developers in translating basic client requests into an HTML code
+                    Co-led a brief 1-day HTML & CSS workshop for colleagues working in sales and marketing
+                    Assisted senior developers in developing the websites of 3 multinational clients
+                    Partnered with designers to ensure high-quality graphic content. I am Certified W3 HTML developer.
+                    I develop Personal HTML projects.
+                </h3>
+            </div>
+            <div id="expertise_3">
+                <h2>CSS</h2><br>
+                <h3>
+                    Assisted senior developers in translating basic client requests into an HTML code
+                    Co-led a brief 1-day HTML & CSS workshop for colleagues working in sales and marketing
+                    Assisted senior developers in developing the websites of 3 multinational clients
+                    Partnered with designers to ensure high-quality graphic content. I am Certified W3 HTML developer.
+                    I develop Personal HTML projects.
+                </h3>
+            </div>
         </section>
         <section id="experience">
-
             <h1>Experience</h1>
-            <% if (locals.experienceArray) { %>
-                <% for( let index=0; index < experienceArray.length; index++ ) { %>
-                    <div id="experience_1">
-                        <h2>
-                            <%=experienceArray[index].exp_name %>
-                        </h2>
-                        <h3>
-                            <%=experienceArray[index].exp_info %>
-                        </h3>
-                    </div>
-                    <% }}else { %>
-
-                        <div id="experience_2">
-                            <h2>Google</h2>
-                            <h3> - A Seasoned Senior Javascript consultant with 5+ years of hands-on experience in the
-                                area
-                                of
-                                software analysis.
-                                <br> - Managed a $2 Million dollar project and successfully achieved scheduled project
-                                goals
-                                <br> - Helped in Recruitment for the year 2020-21.
-                            </h3>
-                        </div>
-                        <div id="experience_3">
-                            <h2>Amazon</h2>
-                            <h3> - A Seasoned Senior Javascript consultant with 5+ years of hands-on experience in the
-                                area
-                                of
-                                software analysis.
-                                <br> - Managed a $2 Million dollar project and successfully achieved scheduled project
-                                goals
-                                <br> - Helped in Recruitment for the year 2020-21.
-                            </h3>
-                        </div>
-                        <% } %>
+            <div id="experience_1">
+                <h2>Oracle</h2>
+                <h3> - A Seasoned Senior Javascript consultant with 5+ years of hands-on experience in the area of
+                    software analysis.
+                    <br> - Managed a $2 Million dollar project and successfully achieved scheduled project goals
+                    <br> - Helped in Recruitment for the year 2020-21.
+                </h3>
+            </div>
+            <div id="experience_2">
+                <h2>Google</h2>
+                <h3> - A Seasoned Senior Javascript consultant with 5+ years of hands-on experience in the area of
+                    software analysis.
+                    <br> - Managed a $2 Million dollar project and successfully achieved scheduled project goals
+                    <br> - Helped in Recruitment for the year 2020-21.
+                </h3>
+            </div>
+            <div id="experience_3">
+                <h2>Amazon</h2>
+                <h3> - A Seasoned Senior Javascript consultant with 5+ years of hands-on experience in the area of
+                    software analysis.
+                    <br> - Managed a $2 Million dollar project and successfully achieved scheduled project goals
+                    <br> - Helped in Recruitment for the year 2020-21.
+                </h3>
+            </div>
         </section>
         <section id="projects">
-
             <h1>Projects</h1>
-
-            <% if (locals.projectArray) { %>
-                <% for( let index=0; index < projectArray.length; index++ ) { %>
-                    <div id="projects_1">
-                        <h2>
-                            <%=projectArray[index].project_name %>
-                        </h2>
-                        <p>
-                            <%=projectArray[index].project_info %>
-                        </p>
-                    </div>
-                    <%}}else{ %>
-
-                        <div id="projects_2">
-                            <h2>Build a Spotify Connected App</h2>
-                        </div>
-                        <div id="projects_3">
-                            <h2>Messaging Application for Japanese local Farmers</h2>
-                        </div>
-                        <div id="projects_4">
-                            <h2>Project Management Dashboard with Open Source Contributions</h2>
-                        </div>
-                        <div id="projects_5">
-                            <h2>World Statistics in Real time engaging in various methods</h2>
-                        </div>
-                        <div id="projects_6">
-                            <h2>Blog Site</h2>
-                        </div>
-                        <%}%>
-
+            <div id="projects_1">
+                <h2>Event management for Netfly.Inc</h2>
+            </div>
+            <div id="projects_2">
+                <h2>Build a Spotify Connected App</h2>
+            </div>
+            <div id="projects_3">
+                <h2>Messaging Application for Japanese local Farmers</h2>
+            </div>
+            <div id="projects_4">
+                <h2>Project Management Dashboard with Open Source Contributions</h2>
+            </div>
+            <div id="projects_5">
+                <h2>World Statistics in Real time engaging in various methods</h2>
+            </div>
+            <div id="projects_6">
+                <h2>Blog Site</h2>
+            </div>
         </section>
         <section id="contact">
             <h1>Contact Me</h1> <br>
             <h2>If you're interested, feel free to contact me at any of my socials:</h2>
-            <a href="<% if (locals.links) { %><%= links.flink %><% } else { %>
-                # <%}%>" target="_blank"><img src="/views/portfolio-3/mail.png" id="mail"></a>
-            <a href="<% if (locals.links) { %><%= links.xlink %><% } else { %>
-                # <%}%>" target="_blank"><img src="/views/portfolio-3/twitter.png" id="twitter"></a>
-            <a href="<% if (locals.links) { %><%= links.llink %><% } else { %>
-                # <%}%>" target="_blank"><img src="/views/portfolio-3/linkedin.png" id="linkedin"></a>
-            <a href="<% if (locals.links) { %><%= links.ilink %><% } else { %>
-                # <%}%>" target="_blank"><img src="/views/portfolio-3/instagram.png" id="instagram"></a>
+            <a href="https://mail.google.com" target="_blank"><img src="/veiws/portfolio-3/mail.png" id="mail"></a>
+            <a href="https://twitter.com" target="_blank"><img src="/veiws/portfolio-3/twitter.png" id="twitter"></a>
+            <a href="https://linkedin.com" target="_blank"><img src="/veiws/portfolio-3/linkedin.png" id="linkedin"></a>
+            <a href="https://instagram.com" target="_blank"><img src="/veiws/portfolio-3/instagram.png" id="instagram"></a>
         </section>
     </div>
 
-    <script >
-        const headerEl = document.querySelector('.header');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 100) {
-     headerEl.classList.add('header-scrolled');
-   } else if(window.scrollY<=100){
-      headerEl.classList.remove('header-scrolled');
-   }
-});
-    </script>
+    <script defer src="js/saketh.js"></script>
 </body>
 
 </html>

@@ -654,7 +654,7 @@ app.get("/p1", async (req, res) => {
       links: linkarray
     })
   } else {
-    await res.render("1portfolio.ejs");
+    await res.render("portfolio-1/p-1index.ejs");
   }
 })
 
@@ -718,7 +718,7 @@ app.get("/p2", async (req, res) => {
       links: linkarray
     });
   } else {
-    await res.render("2portfolio.ejs");
+    await res.render("portfolio-2/p-2index.ejs");
   }
 
 })
@@ -782,7 +782,7 @@ app.get("/p3", async (req, res) => {
       links: linkarray
     });
   } else {
-    await res.render("3portfolio.ejs");
+    await res.render("portfolio-3/p-3index.ejs");
   }
 })
 
