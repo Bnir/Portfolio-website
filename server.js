@@ -13,8 +13,8 @@ import passport from "passport";
 import { Strategy as LocalStrategy } from 'passport-local';
 import { link } from "fs";
 import fs from "fs";
-
-
+import ejs from "ejs"
+import axios from "axios"
 
 // import connectMongoDBSession from "connect-mongodb-session";
 
@@ -691,7 +691,7 @@ app.get("/p2", async (req, res) => {
       //   console.log('invalid credi');
       // }
     }
-
+    
     console.log(projectArray);
 
     let expArray = []
@@ -709,6 +709,7 @@ app.get("/p2", async (req, res) => {
     const linkarray = { ilink: links.ilink, xlink: links.xlink, flink: links.flink, llink: links.llink, glink: links.glink }
 
     // console.log(skill1_name,name);
+
     await res.render("portfolio-2/p-2index.ejs", {
       title: title,
       name: name,
@@ -716,8 +717,13 @@ app.get("/p2", async (req, res) => {
       projectArray: projectArray, aboutme: about,
       experienceArray: expArray,
       links: linkarray
-    });
+    })
+    
+
+
   } else {
+    // Render the EJS template with data
+
     await res.render("portfolio-2/p-2index.ejs");
   }
 
