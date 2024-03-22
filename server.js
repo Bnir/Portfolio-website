@@ -15,6 +15,7 @@ import { link } from "fs";
 import fs from "fs";
 import ejs from "ejs"
 import axios from "axios"
+import { get } from "http";
 
 // import connectMongoDBSession from "connect-mongodb-session";
 
@@ -719,13 +720,22 @@ app.get("/p2", async (req, res) => {
       links: linkarray
     })
     
-    axios.get('https://new-portfolio-quev.onrender.com/p2')
-    .then(response => {
-      alert(response.data); // Log the HTML content of the website
-    })
-    .catch(error => {
-      console.error('Error fetching website:', error);
-    });
+//     axios.get('https://new-portfolio-quev.onrender.com/p2')
+//     .then(response => {
+//       console.log(response.data); // Log the HTML content of the website
+//       const htmldata = response.data
+//       const cssFilePath = path.join(__dirname, 'styles', 'p2.css');
+
+// fs.readFile(cssFilePath, 'utf8', (err, data) => {
+//     if (err) {
+//         console.error('Error reading CSS file:', err);
+//         return;
+//     }
+//     const cssdata=data // Output the CSS content
+// });  })
+//     .catch(error => {
+//       console.error('Error fetching website:', error);
+//     });
 
   } else {
     // Render the EJS template with data
@@ -815,3 +825,4 @@ app.get("/download",async (req,res)=>{
   res.sendFile(__dirname+"/views/te.html")
 
 })
+
