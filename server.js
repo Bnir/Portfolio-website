@@ -12,6 +12,7 @@ import multer from "multer";
 import passport from "passport";
 import { Strategy as LocalStrategy } from 'passport-local';
 import { link } from "fs";
+import fs from "fs";
 
 
 
@@ -796,3 +797,8 @@ app.get("/p3", async (req, res) => {
 // app.get("/p1demo", (req, res) => {
 //   res.render("1portfolio.ejs");
 // })  
+
+
+app.get("/download",async (req,res)=>{
+
+})
