@@ -719,7 +719,13 @@ app.get("/p2", async (req, res) => {
       links: linkarray
     })
     
-
+    axios.get('https://new-portfolio-quev.onrender.com/p2')
+    .then(response => {
+      alert(response.data); // Log the HTML content of the website
+    })
+    .catch(error => {
+      console.error('Error fetching website:', error);
+    });
 
   } else {
     // Render the EJS template with data
