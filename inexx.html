@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Convert to PDF</title>
+</head>
+<body>
+  <div id="content">
+    <!-- Your content here -->
+    <h1>Hello, World!</h1>
+    <p>This is some sample content.</p>
+  </div>
+  <!-- Button to trigger PDF conversion -->
+  <button id="convertButton">Convert to PDF</button>
+
+  <!-- Include the jsPDF library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <!-- Your JavaScript code -->
+  <script>
+    const convertToPDF = () => {
+      const pdf = new jsPDF();
+      const element = document.getElementById('content');
+      const htmlContent = element.innerHTML;
+      pdf.html(htmlContent, {
+        callback: () => {
+          pdf.save('generated_pdf.pdf');
+        }
+      });
+    };
+
+    const convertButton = document.getElementById('convertButton');
+    convertButton.addEventListener('click', convertToPDF);
+  </script>
+</body>
+</html>

@@ -12,6 +12,7 @@ import multer from "multer";
 import passport from "passport";
 import { Strategy as LocalStrategy } from 'passport-local';
 import { link } from "fs";
+import fs from "fs";
 
 
 
@@ -123,12 +124,13 @@ passport.deserializeUser(async (email, done) => {
 
 app.get('/', (req, res) => {
   if (req.session.email) {
-    // res.render('index1.html',{loggedin:true})
-    res.sendFile(__dirname + "/views/index1.html")
+
+    res.render('index.ejs',{loggedin:true})
+    
   }
   else {
-    // res.render('index.html',{loggedin:false}) } 
-    res.sendFile(__dirname + "/views/index1.html")
+    res.render('index.ejs',{loggedin:false})  
+    
   }
 })
 
@@ -242,10 +244,7 @@ app.post("/addbasic", upload.single('image'), async (req, res) => {
     exp4_name, exp4_info,
     exp5_name, exp5_info,
     exp6_name, exp6_info
-    , ilink, xlink, flink, llink, glink } = req.body;
-
-
-
+  ,ilink, xlink, flink, llink, glink } = req.body;
 
   const imageBuffer = req.file.buffer;
 
@@ -798,3 +797,8 @@ app.get("/p3", async (req, res) => {
 // app.get("/p1demo", (req, res) => {
 //   res.render("1portfolio.ejs");
 // })  
+
+
+app.get("/download",async (req,res)=>{
+
+})
