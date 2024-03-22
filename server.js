@@ -800,5 +800,6 @@ app.get("/p3", async (req, res) => {
 
 
 app.get("/download",async (req,res)=>{
+  res.sendFile(__dirname+"/views/te.html")
 
 })

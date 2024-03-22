@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design 1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- <link href='https://unpkg.com/css.gg@2.0.0/icons/css/instagram.css' rel='stylesheet'> -->
+    <!-- <link href='https://unpkg.com/css.gg@2.0.0/icons/css/twitter.css' rel='stylesheet'> -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/rahul.css">
+
+</head>
+
+
+<body data-spy="scroll" data-target="#navbar" data-offset="50">
+    <div class="light-effect"></div>
+    <div class="cont">
+        <div class="leftside column1">
+            <div class="details">
+                <h1>
+                    
+                    Mahesh Reddy 
+                    
+                </h1>
+
+                <h2>
+                    
+                        Lead Engineer at Microsoft
+                        
+                    </h2>
+                <p>I build pixel-perfect, engaging, and accessible digital
+                    experiences.</p>
+            </div>
+            <!-- <nav>
+                <a href="#About-me" class="active">About Me</a>
+                <a href="#Work-experience">Work Experiences</a>
+                <a href="#Projects">Projects</a>
+            </nav> -->
+            <nav id="navbar" class="navbar">
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><i class="fa-solid fa-arrow-right icon1"></i><a class="nav-link active"
+                            href="#About-me">About</a></li>
+                    <li class="nav-item"><i class="fa-solid fa-arrow-right icon1"></i><a class="nav-link inactive"
+                            href="#Work-experience">Experience</a></li>
+                    <li class="nav-item"><i class="fa-solid fa-arrow-right icon1"></i><a class="nav-link inactive"
+                            href="#Projects">Projects</a></li>
+                </ul>
+
+                <div class="sociallinks">
+                    <a href="https://www.github.com/" target="_blank"> <i class="fa-brands fa-github icon"></i></a>
+                    <a href="https://www.x.com/" target="_blank"> <i class="fa-brands fa-x-twitter icon"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank"> <i class="fa-brands fa-instagram icon"></i></a>
+                    <a href="https://www.linkedin.com/" target="_blank"> <i class="fa-brands fa-linkedin icon"></i></a>
+                </div>
+                
+
+            </nav>
+
+        </div>
+        <div class="rightside column2">
+            <section id="About-me" class="about-me">
+                <p class="starter">
+                    
+                        Born to a highly intelluctual family with superpowers.
+                        
+                    
+            </section>
+
+            <section id="Work-experience" class="works-cont sections">
+
+                
+                    
+                <a href="">
+                    <div class="work">
+                        <div class="year">
+                            <p> >>></p>
+                        </div>
+                        <div class="work-details">
+                            <h2>
+                                Gurgul  CEO 
+                            </h2>
+                            <!-- <h4>Senior Engineer</h4> -->
+                            <p>I was the cheif executing OFFICE BOY</p>
+                        </div>
+                    </div>
+                </a>
+                
+
+            </section>
+            <a class="resume-cont" href="google.com">
+                <div class="resume">
+                    <h2>Download Full Resume</h2>
+                </div>
+            </a>
+            <div class="skills">
+                <h1>Skills</h1>
+                <ul>
+                    
+                    
+                    <li>
+                        flirting
+                    </li>
+                    
+                </ul>
+            </div>
+            <section id="Projects" class="projects-container">
+                
+                        
+                <div class="project">
+                    <div class="imagecont">
+                        <img src="https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2018/06/apple-music-widgets.jpg?w=1500&quality=82&strip=all&ssl=1"
+                            alt="">
+                    </div>
+                    
+                    <div class="procont">
+                        <h2>spotify clone</h2>
+                        <p>Integrated svelt kit with react and tailwind css to produce an unuimaginable front end and for backend used c sharp</p>
+                    </div>
+                </div>
+                
+                <div class="project">
+                    <div class="imagecont">
+                        <img src="https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2018/06/apple-music-widgets.jpg?w=1500&quality=82&strip=all&ssl=1"
+                            alt="">
+                    </div>
+                    
+                    <div class="procont">
+                        <h2>Geeks for geeks clone</h2>
+                        <p>tried to clone it ,but kinda stuckk</p>
+                    </div>
+                </div>
+                
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a05fc18fff.js" crossorigin="anonymous"></script>
+    <script >
+        document.addEventListener('mousemove', (e) => {
+  const lightEffect = document.querySelector('.light-effect');
+
+  // Update the position of the light effect based on cursor position
+  lightEffect.style.display = "block";
+  lightEffect.style.left = `${e.clientX}px`;
+  lightEffect.style.top = `${e.clientY}px`;
+});
+
+
+let left = document.querySelector('.leftside');
+let right = document.querySelector('.rightside');
+
+left.addEventListener('wheel', (event) => {
+  right.scrollTop += event.deltaY;
+});
+
+
+let section = document.querySelectorAll('section');
+let navLinks = document.querySelectorAll('nav a');
+
+
+right.addEventListener('wheel', () => {
+  section.forEach(sec => {
+    let top = right.scrollTop + 200;
+    let offset = sec.offsetTop;
+    let height = sec.offsetHeight;
+    let id = sec.getAttribute('id');
+
+    if (top >= offset && top < offset + height) {
+      navLinks.forEach(links => {
+        links.classList.add('inactive');
+        links.classList.remove('active');
+        document.querySelector('nav a[href="#' + id + '"]').classList.add('active');
+        document.querySelector('nav a[href="#' + id + '"]').classList.remove('inactive');
+      })
+    }
+  })
+});
+
+left.addEventListener('wheel', () => {
+  section.forEach(sec => {
+    let top = right.scrollTop;
+    let offset = sec.offsetTop;
+    let height = sec.offsetHeight;
+    let id = sec.getAttribute('id');
+
+    if (top >= offset && top < offset + height) {
+      navLinks.forEach(links => {
+        links.classList.add('inactive');
+        links.classList.remove('active');
+        document.querySelector('nav a[href="#' + id + '"]').classList.add('active');
+        document.querySelector('nav a[href="#' + id + '"]').classList.remove('inactive');
+      })
+    }
+  })
+});
+
+navLinks.forEach((link) => {
+  link.addEventListener('click', (event) => {
+    // event.preventDefault();
+    const targetId = link.getAttribute("href").substring(1);
+    const targetSection = document.getElementById(targetId);
+    console.log(targetId);
+    console.log(targetSection);
+
+    if (targetSection) {
+      targetSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+
+    setTimeout(() => {
+      navLinks.forEach(links => {
+        links.classList.add('inactive');
+        links.classList.remove('active');
+      });
+      event.target.classList.remove('inactive')
+      event.target.classList.add('active');
+    }, 100);
+  })
+});
+    </script>
+</body>
+
+</html>
