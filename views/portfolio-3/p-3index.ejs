@@ -12,7 +12,12 @@
 
 <body>
     <header class="header">
-        <a href="#intro" class="name">Saketh Kumar.</a>
+        <a href="#intro" class="name"><% if (locals.name) { %>
+            <%=  name %>
+           
+          <% } else { %> 
+            Saketh Kumar.
+            <% } %></a>
         <nav class="navbar">
             <a href="#expertise">Expertise</a>
             <a href="#experience">Experience</a>
@@ -23,7 +28,12 @@
     </header>
     <div class="body-home">
         <section id="intro" class="introh">
-            <h1 style="margin-bottom: 20px;">Hi, I'm Saketh Kumar!</h1>
+            <h1 style="margin-bottom: 20px;">Hi, I'm <% if (locals.name) { %>
+                <%=  name %>
+               
+              <% } else { %> 
+                Saketh Kumar!
+                <% } %></h1>
             <h2>Full Stack Developer</h2><br>
             <p>Back in 2012, I decided to try my hand at creating custom Tumblr themes and tumbled head first into the
                 rabbit hole
@@ -39,6 +49,12 @@
         </section>
         <section id="expertise">
             <h1>Expertise</h1>
+            <% if (locals.skillArray) { %>
+                <% for( let index = 0; index < skillArray.length; index++ ) { %>
+                    <div id="expertise_1">
+                        <h2><%=skillArray[index].skill_name%> </h2><br>
+                        <h3><%=skillArray[index].skill_info %></h3>
+                </div><% }}else {  %>
             <div id="expertise_1">
                 <h2>Javascript</h2><br>
                 <h3> A Seasoned Senior Javascript consultant with 5+ years of hands-on experience in the area of
@@ -68,10 +84,18 @@
                     Partnered with designers to ensure high-quality graphic content. I am Certified W3 HTML developer.
                     I develop Personal HTML projects.
                 </h3>
-            </div>
+            </div><%}%>
         </section>
         <section id="experience">
             <h1>Experience</h1>
+            <% if (locals.experienceArray) { %>
+                <% for( let index = 0; index < experienceArray.length; index++ ) { %>
+                    <div id="experience_1">
+                        <h2><%=experienceArray[index].exp_name %> </h2>
+                        <h3> <%=experienceArray[index].exp_info %>
+                        </h3>
+                    </div>
+                    <% }}else {  %>
             <div id="experience_1">
                 <h2>Oracle</h2>
                 <h3> - A Seasoned Senior Javascript consultant with 5+ years of hands-on experience in the area of
@@ -96,9 +120,14 @@
                     <br> - Helped in Recruitment for the year 2020-21.
                 </h3>
             </div>
-        </section>
+        <%}%></section>
         <section id="projects">
             <h1>Projects</h1>
+            <% if (locals.projectArray) { %>
+                <% for( let index = 0; index < projectArray.length; index++ ) { %>
+                    <div id="projects_1">
+                        <h2><%=projectArray[index].project_name %></h2>
+                        <%}}else{ %> 
             <div id="projects_1">
                 <h2>Event management for Netfly.Inc</h2>
             </div>
@@ -117,6 +146,7 @@
             <div id="projects_6">
                 <h2>Blog Site</h2>
             </div>
+            <%}%>
         </section>
         <section id="contact">
             <h1>Contact Me</h1> <br>
@@ -128,5 +158,4 @@
         </section>
     </div>
 </body>
-
 </html>
