@@ -461,7 +461,9 @@ app.listen(port, (err) => {
 })
 
 
-
+app.get("/alert",(req,res)=>{
+  res.sendFile(__dirname+"/public/images/evil.svg")
+})
 
 
 //login part
